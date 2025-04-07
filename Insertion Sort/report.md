@@ -1,4 +1,4 @@
-####__Insertion Sort__
+####Insertion Sort
 
 ## 解題說明
 
