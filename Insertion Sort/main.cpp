@@ -36,7 +36,7 @@ void insertionSort(T* arr, int size) {
 }
 
 int main() {
-    int n = 10000;  // 測試據量為100
+    int n = 1000;  // 測試據量為1000
     vector<int> arr(n);
 
     for (int i = 0; i < n; ++i) {
