@@ -1,4 +1,4 @@
-Insertion Sort
+__Insertion Sort__
 
 ## 解題說明
 
@@ -98,14 +98,6 @@ int main() {
 | 測試三   | $n = 3$      | 6        | 6        |
 | 測試四   | $n = 5$      | 15       | 15       |
 | 測試五   | $n = -1$     | 異常拋出 | 異常拋出 |
-
-### 編譯與執行指令
-
-```shell
-$ g++ -std=c++17 -o sigma sigma.cpp
-$ ./sigma
-6
-```
 
 ### 結論
 
