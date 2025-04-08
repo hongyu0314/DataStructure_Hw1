@@ -6,7 +6,7 @@
 
 ### 解題策略
 
-1. 使用Fisher-Yates隨機算法來隨機打亂數據。
+1. 
 
 2. 計算運行時間使用 clock( ) 測量排序時間。
 
@@ -48,17 +48,11 @@ void RandomNum(int* arr, int n) {
     for (int i = 0; i < n; i++) {
         arr[i] = rand();
     }
-
-    // 使用 Fisher-Yates 算法隨機排列隨機數
-    for (int i = n - 1; i >= 1; i--) {
-        int j = rand() % (i + 1);  // 隨機選擇一個數字進行交換
-        swap(arr[i], arr[j]);      // 交換兩個元素
-    }
 }
 
 int main() {
     int n = 10;  // 測試數量為 10
-    int arr[n];
+    int arr[n];  // 使用原生陣列
 
     srand(time(0));  // 設置隨機數種子
 
