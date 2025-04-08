@@ -16,22 +16,13 @@
 
 ```cpp
 #include <iostream>
-#include <vector>
 #include <ctime>
 #include <cstdlib>
-#include <algorithm>
 using namespace std;
 
+// 顯示陣列內容
 template <class T>
-void Permute(T* arr, int n) {
-    for (int i = n - 1; i >= 1; i--) {
-        int j = rand() % (i + 1);
-        swap(arr[i], arr[j]);
-    }
-}
-
-template <class T>
-void printArray(const T* arr, int size) {
+void printArray(T* arr, int size) {
     for (int i = 0; i < size; i++) {
         cout << arr[i] << " ";
     }
@@ -52,27 +43,37 @@ void insertionSort(T* arr, int size) {
     }
 }
 
-int main() {
-    int n = 100;  // 測試數量為100
-    vector<int> arr(n);
-
-    for (int i = 0; i < n; ++i) {
-        arr[i] = i + 1;
+// 生成 n 個隨機數
+void RandomNum(int* arr, int n) {
+    for (int i = 0; i < n; i++) {
+        arr[i] = rand();
     }
 
-    srand(time(0));
+    // 使用 Fisher-Yates 算法隨機排列隨機數
+    for (int i = n - 1; i >= 1; i--) {
+        int j = rand() % (i + 1);  // 隨機選擇一個數字進行交換
+        swap(arr[i], arr[j]);      // 交換兩個元素
+    }
+}
 
-    Permute(arr.data(), n);
+int main() {
+    int n = 10;  // 測試數量為 10
+    int arr[n];  // 使用原生陣列
+
+    srand(time(0));  // 設置隨機數種子
+
+    // 生成 n 個不同的隨機數並進行隨機排列
+    RandomNum(arr, n);
 
     cout << "Before sorting: ";
-    printArray(arr.data(), n);
+    printArray(arr, n);
 
     clock_t start = clock();
-    insertionSort(arr.data(), n);
+    insertionSort(arr, n);
     clock_t end = clock();
 
     cout << "After sorting: ";
-    printArray(arr.data(), n);
+    printArray(arr, n);
 
     double duration = double(end - start) / CLOCKS_PER_SEC;
     cout << "Sorting time: " << duration << " seconds." << endl;
@@ -84,7 +85,7 @@ int main() {
 ## 效能分析
 
 1. 時間複雜度：程式的時間複雜度為 $O(n²)$。
-2. 空間複雜度：空間複雜度為 $O(n)$。
+2. 空間複雜度：空間複雜度為 $O(1)$。
 
 ## 測試與驗證
 
