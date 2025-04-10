@@ -52,11 +52,10 @@ void RandomNum(int* arr, int n) {
 
 int main() {
     int n = 10;  // 測試數量為 10
-    int arr[n];  // 使用原生陣列
+    int arr[n]; 
 
-    srand(time(0));  // 設置隨機數種子
+    srand(time(0));
 
-    // 生成 n 個不同的隨機數並進行隨機排列
     RandomNum(arr, n);
 
     cout << "Before sorting: ";
