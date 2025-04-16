@@ -1,20 +1,10 @@
 #include <iostream>
-#include <vector>
 #include <ctime>
 #include <cstdlib>
-#include <algorithm>
 using namespace std;
 
 template <class T>
-void Permute(T* arr, int n) {
-    for (int i = n - 1; i >= 1; i--) {
-        int j = rand() % (i + 1);
-        swap(arr[i], arr[j]);
-    }
-}
-
-template <class T>
-void printArray(const T* arr, int size) {
+void printArray(T* arr, int size) {
     for (int i = 0; i < size; i++) {
         cout << arr[i] << " ";
     }
@@ -35,31 +25,31 @@ void insertionSort(T* arr, int size) {
     }
 }
 
-int main() {
-    int n = 1000;  // 測試據量為1000
-    vector<int> arr(n);
-
-    for (int i = 0; i < n; ++i) {
-        arr[i] = i + 1;
+void RandomNum(int* arr, int n) {
+    for (int i = 0; i < n; i++) {
+        arr[i] = rand();
     }
+}
+
+int main() {
+    int n = 10;  // 測試數量為 10
+    int arr[n];
 
     srand(time(0));
 
-    Permute(arr.data(), n);
+    RandomNum(arr, n);
 
-    cout << "Before sorting: ";
-    printArray(arr.data(), n);
+    cout << "Before sorting: \n";
+    printArray(arr, n);
 
     clock_t start = clock();
-    insertionSort(arr.data(), n);
+    insertionSort(arr, n);
     clock_t end = clock();
 
-    cout << "After sorting: ";
-    printArray(arr.data(), n);
+    cout << "\nAfter sorting: \n";
+    printArray(arr, n);
 
     double duration = double(end - start) / CLOCKS_PER_SEC;
     cout << "Sorting time: " << duration << " seconds." << endl;
-
     return 0;
 }
-
