@@ -22,7 +22,6 @@
 #include <cstdlib>
 using namespace std;
 
-// 顯示陣列內容
 template <class T>
 void printArray(T* arr, int size) {
     for (int i = 0; i < size; i++) {
