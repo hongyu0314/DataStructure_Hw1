@@ -31,7 +31,7 @@ void printArray(T* arr, int size) {
     cout << endl;
 }
 
-template <type T>
+template <typename T>
 void insertionSort(T* arr, int size) {
     for (int i = 1; i < size; i++) {
         T key = arr[i];
