@@ -10,6 +10,8 @@
 
 2. 計算運行時間使用 clock( ) 測量排序時間。
 
+3. 輸出結果為排序前與排序後的資料與排序資料所需時間。
+
 ## 程式實作
 
 以下為程式碼：
@@ -20,6 +22,7 @@
 #include <cstdlib>
 using namespace std;
 
+// 顯示陣列內容
 template <class T>
 void printArray(T* arr, int size) {
     for (int i = 0; i < size; i++) {
@@ -28,7 +31,7 @@ void printArray(T* arr, int size) {
     cout << endl;
 }
 
-template <typename T>
+template <type T>
 void insertionSort(T* arr, int size) {
     for (int i = 1; i < size; i++) {
         T key = arr[i];
@@ -49,26 +52,25 @@ void RandomNum(int* arr, int n) {
 }
 
 int main() {
-    int n = 10;
-    int arr[n]; 
+    int n = 10;  // 測試數量為 10
+    int arr[n];
 
     srand(time(0));
 
     RandomNum(arr, n);
 
-    cout << "Before sorting: ";
+    cout << "Before sorting: \n";
     printArray(arr, n);
 
     clock_t start = clock();
     insertionSort(arr, n);
     clock_t end = clock();
 
-    cout << "After sorting: ";
+    cout << "\nAfter sorting: \n";
     printArray(arr, n);
 
     double duration = double(end - start) / CLOCKS_PER_SEC;
     cout << "Sorting time: " << duration << " seconds." << endl;
-
     return 0;
 }
 ```
