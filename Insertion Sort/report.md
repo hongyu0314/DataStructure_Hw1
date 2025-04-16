@@ -20,7 +20,6 @@
 #include <cstdlib>
 using namespace std;
 
-// 顯示陣列內容
 template <class T>
 void printArray(T* arr, int size) {
     for (int i = 0; i < size; i++) {
@@ -43,7 +42,6 @@ void insertionSort(T* arr, int size) {
     }
 }
 
-// 生成 n 個隨機數
 void RandomNum(int* arr, int n) {
     for (int i = 0; i < n; i++) {
         arr[i] = rand();
@@ -51,7 +49,7 @@ void RandomNum(int* arr, int n) {
 }
 
 int main() {
-    int n = 10;  // 測試數量為 10
+    int n = 10;
     int arr[n]; 
 
     srand(time(0));
