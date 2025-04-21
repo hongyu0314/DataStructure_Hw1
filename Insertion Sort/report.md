@@ -58,7 +58,7 @@ int main() {
 
     WorstCaseNum(arr, n);
 
-    cout << "Before sorting (Worst-case): \n";
+    cout << "Before sorting: \n";
     printArray(arr, n);
 
     clock_t start = clock(); 
