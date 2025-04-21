@@ -80,7 +80,6 @@ int main() {
 #include <iostream>
 #include <ctime>
 #include <cstdlib>
-#include <algorithm>
 using namespace std;
 
 template <class T>
@@ -98,7 +97,7 @@ void insertionSort(T* arr, int size) {
         int j = i - 1;
 
         while (j >= 0 && arr[j] > key) {
-            arr[j + 1] = arr[j];
+            arr[j + 1] = arr[j]; 
             j--;
         }
         arr[j + 1] = key;
@@ -113,18 +112,17 @@ void RandomNum(int* arr, int n) {
 
 int main() {
     int n = 500;
-    int arr[n]; 
+    int arr[n];
 
-    srand(time(0)); 
-
+    srand(time(0));
     RandomNum(arr, n);
 
     cout << "Before sorting: \n";
-    printArray(arr, n);
+    printArray(arr, n); 
 
     clock_t start = clock();
     insertionSort(arr, n);
-    clock_t end = clock();
+    clock_t end = clock(); 
 
     cout << "\nAfter sorting: \n";
     printArray(arr, n);
@@ -148,7 +146,7 @@ int main() {
 
      時間複雜度： $O(n²)$。
  
-     空間複雜度： $O(n)$。
+     空間複雜度： $O(1)$。
 
 
 ## 測試與驗證
