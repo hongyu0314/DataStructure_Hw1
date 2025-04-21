@@ -1,6 +1,7 @@
 #include <iostream>
 #include <ctime>
 #include <cstdlib>
+#include <algorithm>
 using namespace std;
 
 template <class T>
@@ -27,15 +28,15 @@ void insertionSort(T* arr, int size) {
 
 void RandomNum(int* arr, int n) {
     for (int i = 0; i < n; i++) {
-        arr[i] = rand();
+        arr[i] = rand() % 1001;
     }
 }
 
 int main() {
-    int n = 10;  // 測試數量為 10
-    int arr[n];
+    int n = 500;
+    int arr[n]; 
 
-    srand(time(0));
+    srand(time(0)); 
 
     RandomNum(arr, n);
 
@@ -51,5 +52,6 @@ int main() {
 
     double duration = double(end - start) / CLOCKS_PER_SEC;
     cout << "Sorting time: " << duration << " seconds." << endl;
+    
     return 0;
 }
