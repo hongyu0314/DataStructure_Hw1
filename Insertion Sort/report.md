@@ -14,7 +14,68 @@
 
 ## 程式實作
 
-以下程式碼是輸入已經排序好的：
+以下為正常程式碼：
+
+```cpp
+#include <iostream>
+#include <ctime>
+#include <cstdlib>
+#include <algorithm>
+using namespace std;
+
+template <class T>
+void printArray(T* arr, int size) {
+    for (int i = 0; i < size; i++) {
+        cout << arr[i] << " ";
+    }
+    cout << endl;
+}
+
+template <typename T>
+void insertionSort(T* arr, int size) {
+    for (int i = 1; i < size; i++) {
+        T key = arr[i];
+        int j = i - 1;
+
+        while (j >= 0 && arr[j] > key) {
+            arr[j + 1] = arr[j];
+            j--;
+        }
+        arr[j + 1] = key;
+    }
+}
+
+void RandomNum(int* arr, int n) {
+    for (int i = 0; i < n; i++) {
+        arr[i] = rand() % 1001;
+    }
+}
+
+int main() {
+    int n = 500;
+    int arr[n]; 
+
+    srand(time(0)); 
+
+    RandomNum(arr, n);
+
+    cout << "Before sorting: \n";
+    printArray(arr, n);
+
+    clock_t start = clock();
+    insertionSort(arr, n);
+    clock_t end = clock();
+
+    cout << "\nAfter sorting: \n";
+    printArray(arr, n);
+
+    double duration = double(end - start) / CLOCKS_PER_SEC;
+    cout << "Sorting time: " << duration << " seconds." << endl;
+    
+    return 0;
+}
+```
+以下為worst-case的程式碼：
 
 ```cpp
 #include <iostream>
@@ -44,30 +105,29 @@ void insertionSort(T* arr, int size) {
     }
 }
 
-void generateSortedNum(int* arr, int n) {
+void WorstCaseNum(int* arr, int n) {
     for (int i = 0; i < n; i++) {
-        arr[i] = rand() % 1001;
+        arr[i] = n - i;
     }
-    sort(arr, arr + n);
 }
 
 int main() {
-    int n = 10;
+    int n = 500;
     int arr[n]; 
 
     srand(time(0));
 
-    generateSortedNum(arr, n);
+    WorstCaseNum(arr, n);
 
-    cout << "Before sorting: \n";
+    cout << "Before sorting (Worst-case): \n";
     printArray(arr, n);
 
-    clock_t start = clock();
-    insertionSort(arr, n);
-    clock_t end = clock();
+    clock_t start = clock(); 
+    insertionSort(arr, n); 
+    clock_t end = clock(); 
 
     cout << "\nAfter sorting: \n";
-    printArray(arr, n);
+    printArray(arr, n); 
 
     double duration = double(end - start) / CLOCKS_PER_SEC;
     cout << "Sorting time: " << duration << " seconds." << endl;
@@ -78,14 +138,18 @@ int main() {
 
 ## 效能分析
 
-1. 時間複雜度：程式的時間複雜度為 $O(n²)$。
-2. 空間複雜度：空間複雜度為 $O(n)$。
+1. 正常程式碼：
+   時間複雜度：程式的時間複雜度為 $O(n²)$。
+   空間複雜度：空間複雜度為 $O(n)$。
+
+2. Worst-case:
+    
 
 ## 測試與驗證
 
 ### 測試案例
 
-| 測試案例 | 隨機參數 $n$ | 平均所耗時間 | worst-case所耗時間 |
+| 測試案例 | 隨機參數 $n$ | 平均(正常)所耗時間 | worst-case所耗時間 |
 |----------|--------------|----------|----------|
 | 測試一   | $n = 500$      |  4e-06 seconds  |   |
 | 測試二   | $n = 1000$      |            |    | 
