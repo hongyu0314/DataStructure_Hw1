@@ -14,7 +14,7 @@
 
 ## 程式實作
 
-以下為worst-case的程式碼：
+以下為Worst-case的程式碼：
 
 ```cpp
 #include <iostream>
