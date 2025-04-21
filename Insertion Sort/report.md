@@ -14,7 +14,7 @@
 
 ## 程式實作
 
-以下為normal-case的程式碼：
+以下為Average-case的程式碼：
 
 ```cpp
 #include <iostream>
@@ -154,7 +154,7 @@ int main() {
 
 ### 測試案例
 
-| 測試案例 | 隨機參數 $n$ | normal-case所耗時間 | worst-case所耗時間 |
+| 測試案例 | 隨機參數 $n$ | Average-case所耗時間 | worst-case所耗時間 |
 |----------|--------------|----------|----------|
 | 測試一   | $n = 500$      | 0.000215 seconds | 0.000418 seconds |
 | 測試二   | $n = 1000$      | 0.000639 seconds | 0.001944 seconds | 
