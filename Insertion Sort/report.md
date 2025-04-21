@@ -14,7 +14,7 @@
 
 ## 程式實作
 
-以下為程式碼：
+以下程式碼是輸入已經排序好的：
 
 ```cpp
 #include <iostream>
@@ -44,19 +44,20 @@ void insertionSort(T* arr, int size) {
     }
 }
 
-void RandomNum(int* arr, int n) {
+void generateSortedNum(int* arr, int n) {
     for (int i = 0; i < n; i++) {
-        arr[i] = rand();
+        arr[i] = rand() % 1001;
     }
+    sort(arr, arr + n);
 }
 
 int main() {
     int n = 10;
-    int arr[n];
+    int arr[n]; 
 
     srand(time(0));
 
-    RandomNum(arr, n);
+    generateSortedNum(arr, n);
 
     cout << "Before sorting: \n";
     printArray(arr, n);
@@ -70,6 +71,7 @@ int main() {
 
     double duration = double(end - start) / CLOCKS_PER_SEC;
     cout << "Sorting time: " << duration << " seconds." << endl;
+    
     return 0;
 }
 ```
