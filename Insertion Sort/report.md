@@ -22,8 +22,8 @@
 #include <iostream>
 #include <ctime>
 #include <cstdlib>
-//#include <windows.h>  // For Windows memory usage tracking
-//#include <psapi.h>    // For Windows memory usage tracking
+//#include <windows.h>  
+//#include <psapi.h>    
 
 using namespace std;
 
@@ -51,7 +51,7 @@ void insertionSort(T* arr, int size) {
 
 void WorstCaseNum(int* arr, int n) {
     for (int i = 0; i < n; i++) {
-        arr[i] = n - i;  // Generates the worst case: a descending order array
+        arr[i] = n - i;
     }
 }
 
@@ -66,9 +66,9 @@ void WorstCaseNum(int* arr, int n) {
 }*/
 
 int main() {
-    int sizes[] = {500, 1000, 2000, 3000, 4000, 5000};  // Different sizes for testing
+    int sizes[] = {500, 1000, 2000, 3000, 4000, 5000}; 
     for (int n : sizes) {
-        int* arr = new int[n];  // Dynamically allocate the array
+        int* arr = new int[n]; 
         
         srand(time(0));
 
@@ -77,7 +77,7 @@ int main() {
         cout << "\nSorting array of size " << n << endl;
 
         clock_t start = clock();
-        insertionSort(arr, n);  // Perform sorting
+        insertionSort(arr, n);
         clock_t end = clock();
 
         double duration = double(end - start) / CLOCKS_PER_SEC;
