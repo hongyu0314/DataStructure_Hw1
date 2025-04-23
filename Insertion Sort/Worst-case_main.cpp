@@ -1,6 +1,9 @@
 #include <iostream>
 #include <ctime>
 #include <cstdlib>
+//#include <windows.h>  
+//#include <psapi.h>    
+
 using namespace std;
 
 template <class T>
@@ -31,26 +34,39 @@ void WorstCaseNum(int* arr, int n) {
     }
 }
 
+/*void PrintMemoryUsage() {
+    // Getting memory usage using Windows API
+    PROCESS_MEMORY_COUNTERS pmc;
+    GetProcessMemoryInfo(GetCurrentProcess(), &pmc, sizeof(pmc));
+
+    cout << "Working Set Size: " << pmc.WorkingSetSize / 1024 << " KB" << endl;
+    cout << "Peak Working Set Size: " << pmc.PeakWorkingSetSize / 1024 << " KB" << endl;
+    cout << "Pagefile Usage: " << pmc.PagefileUsage / 1024 << " KB" << endl;
+}*/
+
 int main() {
-    int n = 500;
-    int arr[n]; 
+    int sizes[] = {500, 1000, 2000, 3000, 4000, 5000}; 
+    for (int n : sizes) {
+        int* arr = new int[n]; 
+        
+        srand(time(0));
 
-    srand(time(0));
+        WorstCaseNum(arr, n);
 
-    WorstCaseNum(arr, n);
+        cout << "\nSorting array of size " << n << endl;
 
-    cout << "Before sorting: \n";
-    printArray(arr, n);
+        clock_t start = clock();
+        insertionSort(arr, n);
+        clock_t end = clock();
 
-    clock_t start = clock(); 
-    insertionSort(arr, n); 
-    clock_t end = clock(); 
+        double duration = double(end - start) / CLOCKS_PER_SEC;
+        cout << "Sorting time "<< ": " << duration << " seconds." << endl;
 
-    cout << "\nAfter sorting: \n";
-    printArray(arr, n); 
+        // Print memory usage
+        //PrintMemoryUsage();
 
-    double duration = double(end - start) / CLOCKS_PER_SEC;
-    cout << "Sorting time: " << duration << " seconds." << endl;
-    
+        delete[] arr;
+    }
+
     return 0;
 }
