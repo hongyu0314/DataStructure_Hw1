@@ -86,7 +86,7 @@ int main() {
         // Print memory usage
         //PrintMemoryUsage();
 
-        delete[] arr;  // Free the dynamically allocated array
+        delete[] arr;
     }
 
     return 0;
@@ -162,7 +162,7 @@ int main() {
         // Print memory usage
         //PrintMemoryUsage();
 
-        delete[] arr;  // Free the dynamically allocated array
+        delete[] arr;
     }
 
     return 0;
@@ -183,7 +183,7 @@ int main() {
  
      空間複雜度： $O(1)$。
 
-### 不需要額外的資料結構來存儲中間結果，它只是在原來的陣列上進行操作，因此空間複雜度是 $O(1)$。
+**不需要額外的資料結構來存儲中間結果，它只是在原來的陣列上進行操作，因此空間複雜度是 $O(1)$。**
 
 
 ## 測試與驗證
