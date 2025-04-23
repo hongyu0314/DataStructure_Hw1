@@ -22,6 +22,9 @@
 #include <iostream>
 #include <ctime>
 #include <cstdlib>
+//#include <windows.h>  // For Windows memory usage tracking
+//#include <psapi.h>    // For Windows memory usage tracking
+
 using namespace std;
 
 template <class T>
@@ -48,31 +51,44 @@ void insertionSort(T* arr, int size) {
 
 void WorstCaseNum(int* arr, int n) {
     for (int i = 0; i < n; i++) {
-        arr[i] = n - i;
+        arr[i] = n - i;  // Generates the worst case: a descending order array
     }
 }
 
+/*void PrintMemoryUsage() {
+    // Getting memory usage using Windows API
+    PROCESS_MEMORY_COUNTERS pmc;
+    GetProcessMemoryInfo(GetCurrentProcess(), &pmc, sizeof(pmc));
+
+    cout << "Working Set Size: " << pmc.WorkingSetSize / 1024 << " KB" << endl;
+    cout << "Peak Working Set Size: " << pmc.PeakWorkingSetSize / 1024 << " KB" << endl;
+    cout << "Pagefile Usage: " << pmc.PagefileUsage / 1024 << " KB" << endl;
+}*/
+
 int main() {
-    int n = 500;
-    int arr[n]; 
+    int sizes[] = {500, 1000, 2000, 3000, 4000, 5000};  // Different sizes for testing
+    for (int n : sizes) {
+        int* arr = new int[n];  // Dynamically allocate the array
+        
+        srand(time(0));
 
-    srand(time(0));
+        WorstCaseNum(arr, n);
 
-    WorstCaseNum(arr, n);
+        cout << "\nSorting array of size " << n << endl;
 
-    cout << "Before sorting: \n";
-    printArray(arr, n);
+        clock_t start = clock();
+        insertionSort(arr, n);  // Perform sorting
+        clock_t end = clock();
 
-    clock_t start = clock(); 
-    insertionSort(arr, n); 
-    clock_t end = clock(); 
+        double duration = double(end - start) / CLOCKS_PER_SEC;
+        cout << "Sorting time "<< ": " << duration << " seconds." << endl;
 
-    cout << "\nAfter sorting: \n";
-    printArray(arr, n); 
+        // Print memory usage
+        //PrintMemoryUsage();
 
-    double duration = double(end - start) / CLOCKS_PER_SEC;
-    cout << "Sorting time: " << duration << " seconds." << endl;
-    
+        delete[] arr;  // Free the dynamically allocated array
+    }
+
     return 0;
 }
 ```
