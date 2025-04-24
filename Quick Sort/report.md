@@ -2,15 +2,15 @@
 
 ## 解題說明
 
-本題要求實現一個快速排序法，以最快的時間去排序出結果，求出Worst-case的排序時間和Average-case的排序時間還有空間/時間複雜度。
+本題要求實現一個快速排序法，以最快的時間去排序出結果，求出Worst-case的排序和Average-case的排序還有空間/時間複雜度。
 
 ### 解題策略
 
-1. Worst-case 的整數變數產生使用 n, n-1, n-2, ...... ,1。
+1. Worst-case 的整數變數產生使用逆序排列的數字。
 
-2. Average-case 的整數變數產生使用隨機亂數(範圍在0~1000)。
+2. Average-case 的整數變數產生使用隨機亂數(範圍在0~9999)。
 
-3. 計算運行時間使用 clock( ) 測量排序時間。
+3. 計算運行時間使用 std::chrono 測量排序時間。
 
 4. 依記憶體的使用量推敲出空間複雜度 
 
@@ -20,59 +20,54 @@
 
 ```cpp
 #include <iostream>
-#include <ctime>
+#include <vector>
 #include <cstdlib>
+#include <ctime>
+#include <chrono>
+
 using namespace std;
+using namespace std::chrono;
 
-template <class T>
-void printArray(T* arr, int size) {
-    for (int i = 0; i < size; i++) {
-        cout << arr[i] << " ";
-    }
-    cout << endl;
-}
-
-template <typename T>
-void insertionSort(T* arr, int size) {
-    for (int i = 1; i < size; i++) {
-        T key = arr[i];
-        int j = i - 1;
-
-        while (j >= 0 && arr[j] > key) {
-            arr[j + 1] = arr[j];
-            j--;
+void quickSort(vector<int>& arr, int left, int right) {
+    if (left < right) {
+        int pivot = arr[right];
+        int i = left - 1;
+        for (int j = left; j < right; ++j) {
+            if (arr[j] <= pivot) {
+                ++i;
+                swap(arr[i], arr[j]);
+            }
         }
-        arr[j + 1] = key;
+        swap(arr[i + 1], arr[right]);
+        int pivotIndex = i + 1;
+
+        quickSort(arr, left, pivotIndex - 1);
+        quickSort(arr, pivotIndex + 1, right);
     }
 }
-
-void WorstCaseNum(int* arr, int n) {
-    for (int i = 0; i < n; i++) {
+vector<int> WorstCase(int n) {
+    vector<int> arr(n);
+    for (int i = 0; i < n; ++i) {
         arr[i] = n - i;
     }
+    return arr;
 }
 
 int main() {
-    int n = 500;
-    int arr[n]; 
-
     srand(time(0));
 
-    WorstCaseNum(arr, n);
+    vector<int> sizes = {500, 1000, 2000, 3000, 4000, 5000};
 
-    cout << "Before sorting: \n";
-    printArray(arr, n);
+    for (int n : sizes) {
+        vector<int> arr = WorstCase(n);
 
-    clock_t start = clock(); 
-    insertionSort(arr, n); 
-    clock_t end = clock(); 
+        auto start = high_resolution_clock::now();
+        quickSort(arr, 0, arr.size() - 1);
+        auto end = high_resolution_clock::now();
 
-    cout << "\nAfter sorting: \n";
-    printArray(arr, n); 
-
-    double duration = double(end - start) / CLOCKS_PER_SEC;
-    cout << "Sorting time: " << duration << " seconds." << endl;
-    
+        auto duration = duration_cast<microseconds>(end - start);
+        cout << "n = " << n << ", Quick Sort Worst Case time: " << duration.count() << " microseconds" << endl;
+    }
     return 0;
 }
 ```
@@ -80,60 +75,58 @@ int main() {
 
 ```cpp
 #include <iostream>
-#include <ctime>
+#include <vector>
 #include <cstdlib>
+#include <ctime>
+#include <chrono>
+
 using namespace std;
+using namespace std::chrono;
 
-template <class T>
-void printArray(T* arr, int size) {
-    for (int i = 0; i < size; i++) {
-        cout << arr[i] << " ";
-    }
-    cout << endl;
-}
-
-template <typename T>
-void insertionSort(T* arr, int size) {
-    for (int i = 1; i < size; i++) {
-        T key = arr[i];
-        int j = i - 1;
-
-        while (j >= 0 && arr[j] > key) {
-            arr[j + 1] = arr[j]; 
-            j--;
+void quickSort(vector<int>& arr, int left, int right) {
+    if (left < right) {
+        int pivot = arr[right];
+        int i = left - 1;
+        for (int j = left; j < right; ++j) {
+            if (arr[j] <= pivot) {
+                ++i;
+                swap(arr[i], arr[j]);
+            }
         }
-        arr[j + 1] = key;
+        swap(arr[i + 1], arr[right]);
+        int pivotIndex = i + 1;
+
+        quickSort(arr, left, pivotIndex - 1);
+        quickSort(arr, pivotIndex + 1, right);
     }
 }
 
-void RandomNum(int* arr, int n) {
-    for (int i = 0; i < n; i++) {
-        arr[i] = rand() % 1001;
+vector<int> Random(int n) {
+    vector<int> arr(n);
+    for (int i = 0; i < n; ++i) {
+        arr[i] = rand() % 10000; 
     }
+    return arr;
 }
 
 int main() {
-    int n = 500;
-    int arr[n];
-
     srand(time(0));
-    RandomNum(arr, n);
 
-    cout << "Before sorting: \n";
-    printArray(arr, n); 
+    vector<int> sizes = {500, 1000, 2000, 3000, 4000, 5000};
 
-    clock_t start = clock();
-    insertionSort(arr, n);
-    clock_t end = clock(); 
+    for (int n : sizes) {
+        vector<int> arr = Random(n);
 
-    cout << "\nAfter sorting: \n";
-    printArray(arr, n);
+        auto start = high_resolution_clock::now();
+        quickSort(arr, 0, arr.size() - 1);
+        auto end = high_resolution_clock::now();
 
-    double duration = double(end - start) / CLOCKS_PER_SEC;
-    cout << "Sorting time: " << duration << " seconds." << endl;
-    
+        auto duration = duration_cast<microseconds>(end - start);
+        cout << "n = " << n << ", Quick Sort time: " << duration.count() << " microseconds" << endl;
+    }
     return 0;
 }
+
 ```
 ## 效能分析
 
@@ -142,13 +135,13 @@ int main() {
 
      時間複雜度： $O(n²)$。
  
-     空間複雜度： $O(1)$。
+     空間複雜度： $O(n)$。
 2. 
    Average-case：
 
-     時間複雜度： $O(n²)$。
+     時間複雜度： $O(nlogn)$。
  
-     空間複雜度： $O(1)$。
+     空間複雜度： $O(logn)$。
 
 
 ## 測試與驗證
@@ -157,16 +150,16 @@ int main() {
 
 | 測試案例 | 參數個數 $n$ | Average-case所耗時間 | Worst-case所耗時間 |
 |----------|--------------|----------|----------|
-| 測試一   | $n = 500$      | 0.000161 seconds | 0.000418 seconds |
-| 測試二   | $n = 1000$      | 0.000639 seconds | 0.001944 seconds | 
-| 測試三   | $n = 2000$      | 0.002534 seconds | 0.007495 seconds |
-| 測試四   | $n = 3000$      | 0.006434 seconds | 0.016573 seconds |
-| 測試五   | $n = 4000$      | 0.011112 seconds | 0.029255 seconds |
-| 測試六   | $n = 5000$      | 0.019719 seconds | 0.037256 seconds |
+| 測試一   | $n = 500$      | 92 microseconds | 1332 microseconds |
+| 測試二   | $n = 1000$      | 157 microseconds | 5153 microseconds | 
+| 測試三   | $n = 2000$      | 343 microseconds | 20198 microseconds |
+| 測試四   | $n = 3000$      | 552 microseconds | 37154 microseconds |
+| 測試五   | $n = 4000$      | 821 microseconds | 51879 microseconds |
+| 測試六   | $n = 5000$      | 1000 microseconds | 83206 microseconds |
 
 ## 申論及開發報告
 
-### 在本程式中，使用插入排序法的主要原因如下：
+### 在本程式中，使用快速排序法的主要原因如下：
 
 1.  **簡單易懂**
 
