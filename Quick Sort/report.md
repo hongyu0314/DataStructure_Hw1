@@ -62,9 +62,7 @@ vector<int> WorstCase(int n) {
         cout << "\nWorking Set Size: " << pmc.WorkingSetSize / 1024 / 1024 << " MB."
              << "Peak Working Set Size: " << pmc.PeakWorkingSetSize / 1024 / 1024 << " MB."
              << "Pagefile Usage: " << pmc.PagefileUsage / 1024 / 1024 << " MB" << endl;
-    } else {
-        cout << "Failed to get memory information!" << endl;
-    }
+    } 
 }*/
 
 int main() {
@@ -80,8 +78,7 @@ int main() {
         auto end = high_resolution_clock::now();
 
         auto duration = duration_cast<microseconds>(end - start);
-        cout << "n = " << n << ", Quick Sort Worst Case time: " << duration.count() << " microseconds.\n ";
-
+        cout << "n = " << n << ", Worst-case time: " << duration.count() << " microseconds.\n ";
         //printMemoryUsage();
     }
 
@@ -96,6 +93,8 @@ int main() {
 #include <cstdlib>
 #include <ctime>
 #include <chrono>
+//#include <windows.h>
+//#include <psapi.h>
 
 using namespace std;
 using namespace std::chrono;
@@ -126,6 +125,15 @@ vector<int> Random(int n) {
     return arr;
 }
 
+/*void printMemoryUsage() {
+    PROCESS_MEMORY_COUNTERS pmc;
+    if (GetProcessMemoryInfo(GetCurrentProcess(), &pmc, sizeof(pmc))) {
+        cout << "\nWorking Set Size: " << pmc.WorkingSetSize / 1024 / 1024 << " MB."
+             << "Peak Working Set Size: " << pmc.PeakWorkingSetSize / 1024 / 1024 << " MB."
+             << "Pagefile Usage: " << pmc.PagefileUsage / 1024 / 1024 << " MB" << endl;
+    } 
+}*/
+
 int main() {
     srand(time(0));
 
@@ -139,7 +147,8 @@ int main() {
         auto end = high_resolution_clock::now();
 
         auto duration = duration_cast<microseconds>(end - start);
-        cout << "n = " << n << ", Quick Sort time: " << duration.count() << " microseconds" << endl;
+        cout << "n = " << n << ", Average-case time: " << duration.count() << " microseconds" << endl;
+        //printMemoryUsage();
     }
     return 0;
 }
