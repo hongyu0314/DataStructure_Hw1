@@ -22,8 +22,8 @@
 #include <iostream>
 #include <ctime>
 #include <cstdlib>
-//#include <windows.h>  
-//#include <psapi.h>    
+#include <windows.h>  
+#include <psapi.h>    
 
 using namespace std;
 
@@ -55,15 +55,14 @@ void WorstCaseNum(int* arr, int n) {
     }
 }
 
-/*void PrintMemoryUsage() {
-    // Getting memory usage using Windows API
+void MemoryUsage() {
     PROCESS_MEMORY_COUNTERS pmc;
     GetProcessMemoryInfo(GetCurrentProcess(), &pmc, sizeof(pmc));
 
     cout << "Working Set Size: " << pmc.WorkingSetSize / 1024 << " KB" << endl;
     cout << "Peak Working Set Size: " << pmc.PeakWorkingSetSize / 1024 << " KB" << endl;
     cout << "Pagefile Usage: " << pmc.PagefileUsage / 1024 << " KB" << endl;
-}*/
+}
 
 int main() {
     int sizes[] = {500, 1000, 2000, 3000, 4000, 5000}; 
@@ -83,8 +82,7 @@ int main() {
         double duration = double(end - start) / CLOCKS_PER_SEC;
         cout << "Sorting time "<< ": " << duration << " seconds." << endl;
 
-        // Print memory usage
-        //PrintMemoryUsage();
+        MemoryUsage();
 
         delete[] arr;
     }
@@ -98,8 +96,8 @@ int main() {
 #include <iostream>
 #include <ctime>
 #include <cstdlib>
-//#include <windows.h>  
-//#include <psapi.h>    
+#include <windows.h>  
+#include <psapi.h>    
 
 using namespace std;
 
@@ -131,15 +129,14 @@ void RandomNum(int* arr, int n) {
     }
 }
 
-/*void PrintMemoryUsage() {
-    // Getting memory usage using Windows API
+void MemoryUsage() {
     PROCESS_MEMORY_COUNTERS pmc;
     GetProcessMemoryInfo(GetCurrentProcess(), &pmc, sizeof(pmc));
 
     cout << "Working Set Size: " << pmc.WorkingSetSize / 1024 << " KB" << endl;
     cout << "Peak Working Set Size: " << pmc.PeakWorkingSetSize / 1024 << " KB" << endl;
     cout << "Pagefile Usage: " << pmc.PagefileUsage / 1024 << " KB" << endl;
-}*/
+}
 
 int main() {
     int sizes[] = {500, 1000, 2000, 3000, 4000, 5000}; 
@@ -159,8 +156,7 @@ int main() {
         double duration = double(end - start) / CLOCKS_PER_SEC;
         cout << "Sorting time "<< ": " << duration << " seconds." << endl;
 
-        // Print memory usage
-        //PrintMemoryUsage();
+        MemoryUsage();
 
         delete[] arr;
     }
