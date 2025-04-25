@@ -179,7 +179,7 @@ int main() {
 | 測試三   | $n = 2000$      | 3994 microseconds | 20198 microseconds |
 | 測試四   | $n = 3000$      | 7787 microseconds | 37154 microseconds |
 | 測試五   | $n = 4000$      | 10081 microseconds | 51879 microseconds |
-| 測試六   | $n = 5000$      | 79687 microseconds | 83206 microseconds |
+| 測試六   | $n = 5000$      | 55659 microseconds | 83206 microseconds |
 
 ## 申論及開發報告
 
