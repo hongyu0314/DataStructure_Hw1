@@ -30,7 +30,7 @@ void insertionSort(T* arr, int size) {
 
 void RandomNum(int* arr, int n) {
     for (int i = 0; i < n; i++) {
-        arr[i] = rand() % 1001;
+        arr[i] = rand() % 10000;
     }
 }
 
