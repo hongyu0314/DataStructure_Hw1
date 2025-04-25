@@ -75,7 +75,7 @@ void fill_random(int* arr, int size, int range) {
 
 int main() {
     int pre_sort_array[MAX_INPUT_SIZE+1] = {0}, i = 0;//+1 is for the end of input flag aka -1
-    int test_element_count = 1000, test_repeat=1000;
+    int test_element_count = 1000, test_repeat=50000;
     double avg_duration=0;
 
     /*while (1) {
