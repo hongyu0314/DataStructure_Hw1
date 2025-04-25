@@ -2,7 +2,7 @@
 
 ## 解題說明
 
-本題要求實現一個插入排序法，以最快的時間去排序出結果，求出Worst-case的排序和Average-case的排序還有空間/時間複雜度。
+本題要求實現一個插入排序法，以最快的時間去排序出結果，求出Worst-case和Average-case的排序時間和空間複雜度。
 
 ### 解題策略
 
@@ -80,7 +80,7 @@ int main() {
         clock_t end = clock();
 
         double duration = double(end - start) / CLOCKS_PER_SEC;
-        cout << "Sorting time " << ": " << duration << " seconds" << endl;
+        cout << "Worst-case time " << ": " << duration << " seconds" << endl;
 
         MemoryUsage();
 
@@ -154,7 +154,7 @@ int main() {
         clock_t end = clock();
 
         double duration = double(end - start) / CLOCKS_PER_SEC;
-        cout << "Sorting time " << ": " << duration << " seconds" << endl;
+        cout << "Average-case time " << ": " << duration << " seconds" << endl;
 
         MemoryUsage();
 
