@@ -174,8 +174,8 @@ int main() {
 
 | 測試案例 | 參數個數 $n$ | Average-case所耗時間 | Worst-case所耗時間 |
 |----------|--------------|----------|----------|
-| 測試一   | $n = 500$      | 788 microseconds | 1332 microseconds |
-| 測試二   | $n = 1000$      | 1621 microseconds | 5153 microseconds | 
+| 測試一   | $n = 500$      | 788 microseconds | 3703 microseconds |
+| 測試二   | $n = 1000$      | 1621 microseconds | 13140 microseconds | 
 | 測試三   | $n = 2000$      | 3994 microseconds | 20198 microseconds |
 | 測試四   | $n = 3000$      | 7787 microseconds | 37154 microseconds |
 | 測試五   | $n = 4000$      | 10081 microseconds | 51879 microseconds |
