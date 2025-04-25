@@ -3,10 +3,14 @@
 #include <time.h>
 #include <string.h>
 
+#define MAX_INPUT_SIZE 5000
+
 void merge_sort(int* array_start, int* array_end) {
     int size = array_end - array_start;
-    if (size <= 1) return;
-
+    if (size <= 1) {
+        
+        return;
+    }
     int* midpoint = array_start + size / 2;
 
     merge_sort(array_start, midpoint);
@@ -54,7 +58,7 @@ void MemoryUsage() {
 }//MemoryUsage
 
 int main() {
-    int pre_sort_array[1024] = {0}, i = 0;
+    int pre_sort_array[MAX_INPUT_SIZE+1] = {0}, i = 0;
 
     while (1) {
         scanf("%d", &pre_sort_array[i]);
