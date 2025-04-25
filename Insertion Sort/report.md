@@ -80,7 +80,7 @@ int main() {
         clock_t end = clock();
 
         double duration = double(end - start) / CLOCKS_PER_SEC;
-        cout << "Sorting time " << ": " << duration << " seconds." << endl;
+        cout << "Sorting time " << ": " << duration << " seconds" << endl;
 
         MemoryUsage();
 
@@ -154,7 +154,7 @@ int main() {
         clock_t end = clock();
 
         double duration = double(end - start) / CLOCKS_PER_SEC;
-        cout << "Sorting time " << ": " << duration << " seconds." << endl;
+        cout << "Sorting time " << ": " << duration << " seconds" << endl;
 
         MemoryUsage();
 
