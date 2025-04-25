@@ -3,6 +3,8 @@
 #include <time.h>
 #include <string.h>
 
+#define MAX_INPUT_SIZE 5000
+
 
 void merge(int* src, int* dest, int left, int mid, int right) {
     int i = left, j = mid, k = left;
@@ -72,7 +74,7 @@ void merge_sort_v(int* array, int size) {
 
 
 int main() {
-    int pre_sort_array[1024] = {0}, i = 0;
+    int pre_sort_array[MAX_INPUT_SIZE+1] = {0}, i = 0;//+1 is for the end of input flag aka -1
 
     while (1) {
         scanf("%d", &pre_sort_array[i]);
