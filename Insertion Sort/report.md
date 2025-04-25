@@ -61,26 +61,26 @@ void MemoryUsage() {
 
     cout << "Working Set Size: " << pmc.WorkingSetSize / 1024 << " KB" << endl;
     cout << "Peak Working Set Size: " << pmc.PeakWorkingSetSize / 1024 << " KB" << endl;
-    cout << "Pagefile Usage: " << pmc.PagefileUsage / 1024 << " KB" << endl;
+    cout << "Pagefile Usage: " << pmc.PagefileUsage / 1024 << " KB\n" << endl;
 }
 
 int main() {
-    int sizes[] = {500, 1000, 2000, 3000, 4000, 5000}; 
+    int sizes[] = { 500, 1000, 2000, 3000, 4000, 5000 };
     for (int n : sizes) {
-        int* arr = new int[n]; 
-        
+        int* arr = new int[n];
+
         srand(time(0));
 
         WorstCaseNum(arr, n);
 
-        cout << "\nSorting array of size " << n << endl;
+        cout << "n =  " << n << endl;
 
         clock_t start = clock();
         insertionSort(arr, n);
         clock_t end = clock();
 
         double duration = double(end - start) / CLOCKS_PER_SEC;
-        cout << "Sorting time "<< ": " << duration << " seconds." << endl;
+        cout << "Sorting time " << ": " << duration << " seconds." << endl;
 
         MemoryUsage();
 
@@ -135,26 +135,26 @@ void MemoryUsage() {
 
     cout << "Working Set Size: " << pmc.WorkingSetSize / 1024 << " KB" << endl;
     cout << "Peak Working Set Size: " << pmc.PeakWorkingSetSize / 1024 << " KB" << endl;
-    cout << "Pagefile Usage: " << pmc.PagefileUsage / 1024 << " KB" << endl;
+    cout << "Pagefile Usage: " << pmc.PagefileUsage / 1024 << " KB\n" << endl;
 }
 
 int main() {
-    int sizes[] = {500, 1000, 2000, 3000, 4000, 5000}; 
+    int sizes[] = { 500, 1000, 2000, 3000, 4000, 5000 };
     for (int n : sizes) {
-        int* arr = new int[n]; 
-        
+        int* arr = new int[n];
+
         srand(time(0));
 
         RandomNum(arr, n);
 
-        cout << "\nSorting array of size " << n << endl;
+        cout << "n =  " << n << endl;
 
         clock_t start = clock();
         insertionSort(arr, n);
         clock_t end = clock();
 
         double duration = double(end - start) / CLOCKS_PER_SEC;
-        cout << "Sorting time "<< ": " << duration << " seconds." << endl;
+        cout << "Sorting time " << ": " << duration << " seconds." << endl;
 
         MemoryUsage();
 
