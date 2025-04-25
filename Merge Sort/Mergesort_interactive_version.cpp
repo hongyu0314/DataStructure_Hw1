@@ -65,9 +65,6 @@ void merge_sort_v(int* array, int size) {
         for (int i = 0; i < size; ++i)
             array[i] = src[i];
     }
-    
-    printf("Memory Usage Info (from /proc/self/status):\n");
-    MemoryUsage();
 
     free(temp);
 }
@@ -88,8 +85,10 @@ int main() {
 
     double duration = (double)(end - start) / CLOCKS_PER_SEC;
     printf("MergeSort interactive version duration: %.9lf seconds\n", duration);
-
     
+    printf("Memory Usage Info (from /proc/self/status):\n");
+    MemoryUsage();
+
 
     return 0;
 }
