@@ -8,7 +8,7 @@
 
 1. Worst-case 的整數變數產生使用 n, n-1, n-2, ...... ,1。
 
-2. Average-case 的整數變數產生使用隨機亂數(範圍設在0~1000)。
+2. Average-case 的整數變數產生使用隨機亂數(範圍設在0~9999)。
 
 3. 測量排序時間使用 clock( ) 。
 
@@ -125,7 +125,7 @@ void insertionSort(T* arr, int size) {
 
 void RandomNum(int* arr, int n) {
     for (int i = 0; i < n; i++) {
-        arr[i] = rand() % 1001;
+        arr[i] = rand() % 10000;
     }
 }
 
@@ -135,26 +135,26 @@ void MemoryUsage() {
 
     cout << "Working Set Size: " << pmc.WorkingSetSize / 1024 << " KB" << endl;
     cout << "Peak Working Set Size: " << pmc.PeakWorkingSetSize / 1024 << " KB" << endl;
-    cout << "Pagefile Usage: " << pmc.PagefileUsage / 1024 << " KB\n" << endl;
+    cout << "Pagefile Usage: " << pmc.PagefileUsage / 1024 << " KB" << endl;
 }
 
 int main() {
-    int sizes[] = { 500, 1000, 2000, 3000, 4000, 5000 };
+    int sizes[] = {500, 1000, 2000, 3000, 4000, 5000}; 
     for (int n : sizes) {
-        int* arr = new int[n];
-
+        int* arr = new int[n]; 
+        
         srand(time(0));
 
         RandomNum(arr, n);
 
-        cout << "n =  " << n << endl;
+        cout << "\nSorting array of size " << n << endl;
 
         clock_t start = clock();
         insertionSort(arr, n);
         clock_t end = clock();
 
         double duration = double(end - start) / CLOCKS_PER_SEC;
-        cout << "Average-case time " << ": " << duration << " seconds" << endl;
+        cout << "Sorting time "<< ": " << duration << " seconds." << endl;
 
         MemoryUsage();
 
