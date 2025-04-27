@@ -171,7 +171,6 @@ int main() {
 
         cout << n << "\t\t" << insertionTime << "\t\t" << quickSortTime << "\t\t" << mergeSortTime << "\t\t" << heapSortTime << endl;
     }
-
     return 0;
 }
 ```
