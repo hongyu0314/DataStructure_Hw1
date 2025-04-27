@@ -156,7 +156,7 @@ void compositeSort(T* arr, int size) {
 int main() {
     srand(time(0));
 
-    vector<int> sizes = { 500, 1000, 2000, 3000, 4000, 5000 };
+    vector<int> sizes = {100, 500, 1000, 2000, 5000, 10000};
 
     for (int n : sizes) {
         vector<int> arr(n);
