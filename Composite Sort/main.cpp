@@ -25,7 +25,7 @@ void insertionSort(T* arr, int size) {
 }
 
 // quick
-void quickSort(vector<int>& arr, int left, int right) {
+void quickSort(vector<int> arr, int left, int right) {
     if (left < right) {
         int pivot = arr[right];
         int i = left - 1;
