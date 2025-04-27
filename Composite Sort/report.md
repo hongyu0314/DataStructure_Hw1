@@ -6,11 +6,11 @@
 
 ### 解題策略
 
-1. 小於 10 個資料使用插入排序。
+1. 小於 10 個資料使用insertion sort。
 
-2. 小於 1000 個資料使用堆排序。
+2. 小於 1000 個資料使用Heap sort。
 
-3. 大於 1000 個資料使用快速排序。
+3. 大於 1000 個資料使用quick sort。
 
 4. 計算運行時間使用 std::chrono 測量排序時間。  
 
@@ -137,7 +137,7 @@ vector<int> RandomNum(int n) {
 int main() {
     srand(time(0));
 
-    vector<int> sizes = {100, 500, 1000, 2000, 5000, 10000};
+    vector<int> sizes = {50, 500, 1000, 3000, 5000, 10000};
 
     cout << "Sorting times for each algorithm (in microseconds):" << endl;
     cout << "--------------------------------------------------------" << endl;
@@ -337,22 +337,37 @@ int main() {
 ```
 ## 效能分析
 
-1. 
-    
+1. Insertion Sort:
 
+   時間複雜度： $O(n^2)$
+
+   空間複雜度： $O(1)$
+   
+3. Quick Sort:
+
+   時間複雜度： $O(nlogn)$
+
+   空間複雜度： $O(logn)$
+   
+4. Heap Sort:
+
+   時間複雜度： $O(nlogn)$
+
+   空間複雜度： $O(1)$
+    
 
 ## 測試與驗證
 
 ### 測試案例
 
-| 測試案例 | 參數個數 $n$ | Average-case所耗時間 | Worst-case所耗時間 |
-|----------|--------------|----------|----------|
-| 測試一   | $n = 500$      | 0.000161 seconds | 0.000418 seconds |
-| 測試二   | $n = 1000$      | 0.000639 seconds | 0.001944 seconds | 
-| 測試三   | $n = 2000$      | 0.002534 seconds | 0.007495 seconds |
-| 測試四   | $n = 3000$      | 0.006434 seconds | 0.016573 seconds |
-| 測試五   | $n = 4000$      | 0.011112 seconds | 0.029255 seconds |
-| 測試六   | $n = 5000$      | 0.019719 seconds | 0.037256 seconds |
+| 測試案例 | 參數個數 $n$ | Insertion Sort所耗時間 | Quick Sort所耗時間 | Merge Sort所耗時間 | Heap Sort所耗時間 |
+|----------|--------------|----------|----------|----------|----------|
+| 測試一   | $n = 50$      | 2 microseconds | 4 microseconds | 3 microseconds | 6 microseconds |
+| 測試二   | $n = 500$      | 195 microseconds | 71 microseconds | 38 microseconds | 108 microseconds | 
+| 測試三   | $n = 1000$      | 677 microseconds | 176 microseconds | 91 microseconds | 219 microseconds |
+| 測試四   | $n = 3000$      | 6567 microseconds | 679 microseconds | 341 microseconds | 842 microseconds |
+| 測試五   | $n = 5000$      | 16612 microseconds | 966 microseconds | 488 microseconds | 1337 microseconds |
+| 測試六   | $n = 10000$      | 63314 microseconds | 2079 microseconds | 1006 microseconds | 2879 microseconds |
 
 ## 申論及開發報告
 
