@@ -24,7 +24,7 @@ void insertionSort(T* arr, int size) {
     }
 }
 
-// quick
+// Quick
 void quickSort(vector<int> arr, int left, int right) {
     if (left < right) {
         int pivot = arr[right];
@@ -112,46 +112,45 @@ void heapsort(int* arr, int n) {
     }
 }
 
-void printMemoryUsage() {
-    PROCESS_MEMORY_COUNTERS pmc;
-    if (GetProcessMemoryInfo(GetCurrentProcess(), &pmc, sizeof(pmc))) {
-        cout << "Working Set Size: " << pmc.WorkingSetSize / 1024 / 1024 << " MB\n"
-             << "Peak Working Set Size: " << pmc.PeakWorkingSetSize / 1024 / 1024 << " MB\n"
-             << "Pagefile Usage: " << pmc.PagefileUsage / 1024 / 1024 << " MB\n" << endl;
-    }
+template <typename T>
+double measureTime(void(*sortFunc)(T*, int), T* arr, int size) {
+    auto start = high_resolution_clock::now();
+    sortFunc(arr, size);
+    auto end = high_resolution_clock::now();
+    return duration_cast<microseconds>(end - start).count();
 }
 
-template <typename T>
-void compositeSort(T* arr, int size) {
-    if (size < 10) {
-        insertionSort(arr, size);
-    } else if (size < 1000) {
-        heapsort(arr, size);
-    } else {
-        quickSort(arr, 0, size - 1);
+vector<int> RandomNum(int n) {
+    vector<int> arr(n);
+    for (int i = 0; i < n; ++i) {
+        arr[i] = rand() % 10000;
     }
+    return arr;
 }
 
 int main() {
     srand(time(0));
 
-    vector<int> sizes = { 500, 1000, 2000, 3000, 4000, 5000 };
+    vector<int> sizes = {10, 250, 1000, 2000, 5000, 10000};
+
+    cout << "Sorting times for each algorithm (in microseconds):" << endl;
+    cout << "--------------------------------------------------------" << endl;
+    cout << "n\tInsertionSort\tQuickSort\tMergeSort\tHeapSort" << endl;
 
     for (int n : sizes) {
-        vector<int> arr(n);
-        for (int i = 0; i < n; ++i) {
-            arr[i] = rand() % 10000;
-        }
+        vector<int> arr1 = RandomNum(n);
+        vector<int> arr2 = arr1;
+        vector<int> arr3 = arr1;
+        vector<int> arr4 = arr1;
 
-        auto start = high_resolution_clock::now();
-        compositeSort(arr.data(), n);
-        auto end = high_resolution_clock::now();
+        double insertionTime = measureTime(insertionSort<int>, arr1.data(), n);
+        double quickSortTime = measureTime([](int* arr, int size) { quickSort(vector<int>(arr, arr + size), 0, size - 1); }, arr2.data(), n);
+        double mergeSortTime = measureTime([](int* arr, int size) { merge_sort_v(arr, size); }, arr3.data(), n);
+        double heapSortTime = measureTime(heapsort, arr4.data(), n);
 
-        auto duration = duration_cast<microseconds>(end - start);
-        cout << "n = " << n << endl << "Composite Sort time: " << duration.count() << " microseconds" << endl;
-        printMemoryUsage();
+        // 顯示結果
+        cout << n << "\t" << insertionTime << "\t" << quickSortTime << "\t" << mergeSortTime << "\t" << heapSortTime << endl;
     }
 
     return 0;
 }
-
