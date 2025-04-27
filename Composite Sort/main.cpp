@@ -3,13 +3,10 @@
 #include <cstdlib>
 #include <ctime>
 #include <chrono>
-#include <windows.h>
-#include <psapi.h>
 
 using namespace std;
 using namespace std::chrono;
 
-// Insertion
 template <typename T>
 void insertionSort(T* arr, int size) {
     for (int i = 1; i < size; i++) {
@@ -24,7 +21,6 @@ void insertionSort(T* arr, int size) {
     }
 }
 
-// Quick
 void quickSort(vector<int> arr, int left, int right) {
     if (left < right) {
         int pivot = arr[right];
@@ -43,7 +39,6 @@ void quickSort(vector<int> arr, int left, int right) {
     }
 }
 
-// Merge
 void merge(int* src, int* dest, int left, int mid, int right) {
     int i = left, j = mid, k = left;
     while (i < mid && j < right) {
@@ -84,7 +79,6 @@ void merge_sort_v(int* array, int size) {
     free(temp);
 }
 
-// Heap
 void localHeapSort(int* arr, int n, int i) {
     int largest = i;
     int left = 2 * i + 1;
@@ -112,14 +106,6 @@ void heapsort(int* arr, int n) {
     }
 }
 
-template <typename T>
-double measureTime(void(*sortFunc)(T*, int), T* arr, int size) {
-    auto start = high_resolution_clock::now();
-    sortFunc(arr, size);
-    auto end = high_resolution_clock::now();
-    return duration_cast<microseconds>(end - start).count();
-}
-
 vector<int> RandomNum(int n) {
     vector<int> arr(n);
     for (int i = 0; i < n; ++i) {
@@ -131,11 +117,11 @@ vector<int> RandomNum(int n) {
 int main() {
     srand(time(0));
 
-    vector<int> sizes = {10, 250, 1000, 2000, 5000, 10000};
+    vector<int> sizes = {100, 500, 1000, 2000, 5000, 10000};
 
     cout << "Sorting times for each algorithm (in microseconds):" << endl;
     cout << "--------------------------------------------------------" << endl;
-    cout << "n\tInsertionSort\tQuickSort\tMergeSort\tHeapSort" << endl;
+    cout << "n\t\tInsertionSort\tQuickSort\tMergeSort\tHeapSort" << endl;
 
     for (int n : sizes) {
         vector<int> arr1 = RandomNum(n);
@@ -143,13 +129,27 @@ int main() {
         vector<int> arr3 = arr1;
         vector<int> arr4 = arr1;
 
-        double insertionTime = measureTime(insertionSort<int>, arr1.data(), n);
-        double quickSortTime = measureTime([](int* arr, int size) { quickSort(vector<int>(arr, arr + size), 0, size - 1); }, arr2.data(), n);
-        double mergeSortTime = measureTime([](int* arr, int size) { merge_sort_v(arr, size); }, arr3.data(), n);
-        double heapSortTime = measureTime(heapsort, arr4.data(), n);
+        auto start = high_resolution_clock::now();
+        insertionSort<int>(arr1.data(), n);
+        auto end = high_resolution_clock::now();
+        double insertionTime = duration_cast<microseconds>(end - start).count();
 
-        // 顯示結果
-        cout << n << "\t" << insertionTime << "\t" << quickSortTime << "\t" << mergeSortTime << "\t" << heapSortTime << endl;
+        start = high_resolution_clock::now();
+        quickSort(arr2, 0, n - 1);
+        end = high_resolution_clock::now();
+        double quickSortTime = duration_cast<microseconds>(end - start).count();
+
+        start = high_resolution_clock::now();
+        merge_sort_v(arr3.data(), n);
+        end = high_resolution_clock::now();
+        double mergeSortTime = duration_cast<microseconds>(end - start).count();
+
+        start = high_resolution_clock::now();
+        heapsort(arr4.data(), n);
+        end = high_resolution_clock::now();
+        double heapSortTime = duration_cast<microseconds>(end - start).count();
+
+        cout << n << "\t\t" << insertionTime << "\t\t" << quickSortTime << "\t\t" << mergeSortTime << "\t\t" << heapSortTime << endl;
     }
 
     return 0;
