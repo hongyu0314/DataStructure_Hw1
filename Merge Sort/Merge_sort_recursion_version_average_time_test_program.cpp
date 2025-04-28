@@ -58,7 +58,8 @@ void MemoryUsage() {
     fclose(file);
 }
 
-void fill_random(int* arr, int size, int range) {
+void fill_random(int* arr, int size) {
+    int range = size;
     srand(time(0));
     for (int i = 0; i < size; ++i) {
         arr[i] = rand() % range;  // [0, range-1]
@@ -68,18 +69,19 @@ void fill_random(int* arr, int size, int range) {
 
 int main() {
     int pre_sort_array[MAX_INPUT_SIZE+1] = {0}, i = 0;//+1 is for the end of input flag aka -1
-    int test_element_count = 1000, test_repeat;
+    int test_element_count, test_repeat = 10000;
     double avg_duration=0;
 
     while (1) 
     {
-        scanf("%d", &test_repeat);
-        if (test_repeat == -1) break;
+        scanf("%d", &test_element_count);
+        if (test_element_count == -1) break;
     
         i = test_repeat;
     
         while(i--){
-            fill_random(pre_sort_array,test_element_count,2000);
+        
+        fill_random(pre_sort_array,test_element_count);
         
             clock_t start = clock();
             merge_sort(pre_sort_array,pre_sort_array+test_element_count);
