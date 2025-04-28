@@ -176,10 +176,10 @@ int main() {
 |----------|--------------|----------|----------|
 | 測試一   | $n = 500$      | 307 microseconds | 3703 microseconds |
 | 測試二   | $n = 1000$      | 563 microseconds | 13140 microseconds | 
-| 測試三   | $n = 2000$      | 1254 microseconds | 0 microseconds |
-| 測試四   | $n = 3000$      | 3002 microseconds | 0 microseconds |
-| 測試五   | $n = 4000$      | 6631 microseconds | 0 microseconds |
-| 測試六   | $n = 5000$      | 13992 microseconds | 0 microseconds |
+| 測試三   | $n = 2000$      | 1254 microseconds | 35470 microseconds |
+| 測試四   | $n = 3000$      | 3002 microseconds | 84799 microseconds |
+| 測試五   | $n = 4000$      | 6631 microseconds | 132223 microseconds |
+| 測試六   | $n = 5000$      | 13992 microseconds | 192610 microseconds |
 
 ![output (1)](https://github.com/user-attachments/assets/8d833e0a-c415-4a72-ac9a-a9a49381f5c2)
 ## 申論及開發報告
