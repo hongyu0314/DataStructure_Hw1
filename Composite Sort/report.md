@@ -203,7 +203,7 @@ void insertionSort(T* arr, int size) {
     }
 }
 
-// QuickSort (modified to work with pointers instead of vector)
+// Quick
 template <typename T>
 void quickSort(T* arr, int left, int right) {
     if (left < right) {
@@ -306,7 +306,7 @@ void compositeSort(T* arr, int size) {
     if (size <= 10) {
         insertionSort(arr, size);
     }
-    else if (size < 1000 && size >10) {
+    else if (size < 1000 && size > 10) {
         heapsort(arr, size);
     }
     else {
@@ -317,7 +317,7 @@ void compositeSort(T* arr, int size) {
 int main() {
     srand(time(0));
 
-    vector<int> sizes = { 500, 1000, 2000, 3000, 4000, 5000 };
+    vector<int> sizes = { 10, 300, 500, 1000, 2000, 5000 };
 
     for (int n : sizes) {
         vector<int> arr(n);
