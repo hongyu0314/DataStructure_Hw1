@@ -117,7 +117,7 @@ vector<int> RandomNum(int n) {
 int main() {
     srand(time(0));
 
-    vector<int> sizes = {100, 500, 1000, 2000, 5000, 10000};
+    vector<int> sizes = {50, 500, 1000, 3000, 5000, 10000};
 
     cout << "Sorting times for each algorithm (in microseconds):" << endl;
     cout << "--------------------------------------------------------" << endl;
@@ -151,6 +151,5 @@ int main() {
 
         cout << n << "\t\t" << insertionTime << "\t\t" << quickSortTime << "\t\t" << mergeSortTime << "\t\t" << heapSortTime << endl;
     }
-
     return 0;
 }
