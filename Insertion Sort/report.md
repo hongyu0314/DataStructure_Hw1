@@ -194,7 +194,7 @@ int main() {
 | 測試四   | $n = 3000$      | 0.006434 seconds | 0.016573 seconds |
 | 測試五   | $n = 4000$      | 0.011112 seconds | 0.029255 seconds |
 | 測試六   | $n = 5000$      | 0.019719 seconds | 0.037256 seconds |
-
+![output (2)](https://github.com/user-attachments/assets/337db611-2a87-4ece-bcaa-351d812ea73a)
 ## 申論及開發報告
 
 ### 在本程式中，使用插入排序法的主要原因如下：
