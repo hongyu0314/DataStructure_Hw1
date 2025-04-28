@@ -2,15 +2,17 @@
 
 ## 解題說明
 
-本題要求實現一個插入排序法，以最快的時間去排序出結果，求出Worst-case的排序時間和Average-case的排序時間還有空間/時間複雜度。
+題目要求 heapsort 的 worst case 與 average case 時間、空間的複雜度計算，並且如果有的話使用更快的 methhod。
 
 ### 解題策略
 
-1. 如作業題目提到的用不重複隨機數列來做 worst case
+1. 如作業題目提到的用不重複隨機數列來做 worst case。
+
+2. 加入srand(time())來保證 average test 的資料多樣性。
 
 ## 程式實作
 
-由於 heapsort 沒有兩個 method 所以只有一個 heapsort 主函式
+由於 heapsort 沒有兩個 method 所以只有一個 heapsort 主函式。
 
 ```cpp
 void localHeapSort(int* arr, int n, int i) {
