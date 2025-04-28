@@ -1,18 +1,18 @@
 # Merge Sort
 
-## 解題說明
+## 題目說明
 
-本題要求實現一個插入排序法，以最快的時間去排序出結果，求出Worst-case和Average-case的排序時間和空間複雜度。
+題目要求 mergesort 的 worst case 與 average case 時間、空間的複雜度計算，並且如果有的話使用更快的 methhod。
 
-### 解題策略
+### 解題細節
 
-1. Worst-case 的整數變數產生使用 n, n-1, n-2, ...... ,1。
+1. 將使用兩種 method 在一樣的環境下執行。 
 
-2. Average-case 的整數變數產生使用隨機亂數(範圍在0~1000)。
+3. average case 的整數變數產生使用隨機亂數(範圍在0~1000)。
 
-3. 計算運行時間使用 clock( ) 測量排序時間。
+4. 程式在 linux 下的 GDB 環境運行 (GDB 環境會記錄程式執行期間的記憶體使用峰值)。
 
-4. 依記憶體的使用量推敲出空間複雜度 
+5. 因 mergesort 演算法特性所有步驟皆會跑過一遍所以 worst case 將採用與 average case 相同的隨機生成。
 
 ## 程式實作
 
