@@ -181,7 +181,8 @@ int main() {
 | 測試五   | $n = 4000$      | 6631 microseconds | 132223 microseconds |
 | 測試六   | $n = 5000$      | 13992 microseconds | 192610 microseconds |
 
-![output (1)](https://github.com/user-attachments/assets/8d833e0a-c415-4a72-ac9a-a9a49381f5c2)
+![output (3)](https://github.com/user-attachments/assets/ba1e4ca4-af2d-4a04-afd3-d99bd1c6320f)
+
 ## 申論及開發報告
 
 ### 在本程式中，使用快速排序法的主要原因如下：
