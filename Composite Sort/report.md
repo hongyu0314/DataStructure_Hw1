@@ -8,7 +8,7 @@
 
 1. 小於 10 個資料使用Insertion sort。
 
-2. 小於 1000 個資料使用Heap sort。
+2. 介於 10 到 1000 個資料使用Heap sort。
 
 3. 大於 1000 個資料使用Ｑuick sort。
 
@@ -303,10 +303,10 @@ void printMemoryUsage() {
 
 template <typename T>
 void compositeSort(T* arr, int size) {
-    if (size < 10) {
+    if (size <= 10) {
         insertionSort(arr, size);
     }
-    else if (size < 1000) {
+    else if (size < 1000 && size >10) {
         heapsort(arr, size);
     }
     else {
