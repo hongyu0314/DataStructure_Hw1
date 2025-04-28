@@ -89,8 +89,9 @@ int main() {
             avg_duration += (double)(end - start) / CLOCKS_PER_SEC;
         }
         
-        printf("MergeSort interactive version total duration: %.9lf seconds\n", avg_duration);
-        printf("MergeSort interactive version average duration: %.9lf seconds\n", avg_duration/test_repeat);
+        printf("HeapSort interactive version total duration: %.9lf seconds\n", avg_duration);
+        printf("HeapSort interactive version average duration: %.9lf seconds\n", avg_duration/test_repeat);
+
     
         printf("Memory Usage Info (from /proc/self/status):\n");
         MemoryUsage();
