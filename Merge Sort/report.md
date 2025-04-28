@@ -117,7 +117,8 @@ void merge_sort(int* array_start, int* array_end) {
 以下為圖表:
 ![image](https://raw.githubusercontent.com/hongyu0314/DataStructure_Hw1/refs/heads/main/Merge%20Sort/picture/%E5%9C%96%E7%89%871.png)
 
-由圖表折線形狀大至推估兩者成長性皆為 O(nlogn)
+interaction method 的表現明顯更快
+由圖表折線形狀大至推估其成長性為 O(nlogn)
 
 #### 空間複雜度分析
 
