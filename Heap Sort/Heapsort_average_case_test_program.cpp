@@ -3,6 +3,7 @@
 #include <time.h>
 #include <string.h>
 
+#define MAX_INPUT_SIZE 5000
 #define swap(a,b) temp=a;\
 a=b;\
 b=temp;
@@ -38,6 +39,8 @@ void heapsort(int* arr, int n) {
     }
 }
 
+
+
 void MemoryUsage() {
     FILE* file = fopen("/proc/self/status", "r");
     if (!file) {
@@ -55,24 +58,44 @@ void MemoryUsage() {
     fclose(file);
 }//MemoryUsage
 
-int main() {
-    int pre_sort_array[1024] = {0}, i = 0;
-
-    while (1) {
-        scanf("%d", &pre_sort_array[i]);
-        if (pre_sort_array[i] == -1) break;
-        i++;
+void fill_random(int* arr, int size) {
+    int range = size;
+    srand(time(0));
+    for (int i = 0; i < size; ++i) {
+        arr[i] = rand() % range;  // [0, range-1]
     }
+}
 
-    clock_t start = clock();
-    heapsort(pre_sort_array, i);
-    clock_t end = clock();
+int main() {
+    int pre_sort_array[MAX_INPUT_SIZE+1] = {0}, i = 0;//+1 is for the end of input flag aka -1
+    int test_element_count, test_repeat = 10000;
+    double avg_duration=0;
 
-    double duration = (double)(end - start) / CLOCKS_PER_SEC;
-    printf("MergeSort recursion version duration: %.9lf seconds\n", duration);
-
-    printf("Memory Usage Info (from /proc/self/status):\n");
-    MemoryUsage();
+    while (1) 
+    {
+        scanf("%d", &test_element_count);
+        if (test_element_count == -1) break;
+    
+        i = test_repeat;
+    
+        while(i--){
+        
+        fill_random(pre_sort_array,test_element_count);
+        
+            clock_t start = clock();
+            heapsort(pre_sort_array,test_element_count);
+            clock_t end = clock();
+        
+            avg_duration += (double)(end - start) / CLOCKS_PER_SEC;
+        }
+        
+        printf("MergeSort interactive version total duration: %.9lf seconds\n", avg_duration);
+        printf("MergeSort interactive version average duration: %.9lf seconds\n", avg_duration/test_repeat);
+    
+        printf("Memory Usage Info (from /proc/self/status):\n");
+        MemoryUsage();
+    
+    }
 
     return 0;
 }
