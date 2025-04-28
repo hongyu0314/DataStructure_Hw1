@@ -67,6 +67,7 @@ void merge_sort_v(int* array, int size) {
 }
 
 void fill_random(int* arr, int size, int range) {
+    srand(time(0));
     for (int i = 0; i < size; ++i) {
         arr[i] = rand() % range;  // [0, range-1]
     }
@@ -75,31 +76,32 @@ void fill_random(int* arr, int size, int range) {
 
 int main() {
     int pre_sort_array[MAX_INPUT_SIZE+1] = {0}, i = 0;//+1 is for the end of input flag aka -1
-    int test_element_count = 1000, test_repeat=50000;
+    int test_element_count = 1000, test_repeat;
     double avg_duration=0;
 
-    /*while (1) {
-        scanf("%d", &pre_sort_array[i]);
-        if (pre_sort_array[i] == -1) break;
-        i++;
-    }*/
+    while (1) 
+    {
+        scanf("%d", &test_repeat);
+        if (test_repeat == -1) break;
     
-    i = test_repeat;
+        i = test_repeat;
     
-    while(i--){
-        fill_random(pre_sort_array,test_element_count,2000);
+        while(i--){
+            fill_random(pre_sort_array,test_element_count,2000);
         
-        clock_t start = clock();
-        merge_sort_v(pre_sort_array,test_element_count);
-        clock_t end = clock();
+            clock_t start = clock();
+            merge_sort_v(pre_sort_array,test_element_count);
+            clock_t end = clock();
         
-        avg_duration += (double)(end - start) / CLOCKS_PER_SEC;
+            avg_duration += (double)(end - start) / CLOCKS_PER_SEC;
+        }
+        printf("MergeSort interactive version total duration: %.9lf seconds\n", avg_duration);
+        printf("MergeSort interactive version average duration: %.9lf seconds\n", avg_duration/test_repeat);
+    
+        printf("Memory Usage Info (from /proc/self/status):\n");
+        MemoryUsage();
+    
     }
-    printf("MergeSort interactive version total duration: %.9lf seconds\n", avg_duration);
-    printf("MergeSort interactive version average duration: %.9lf seconds\n", avg_duration/test_repeat);
-    
-    printf("Memory Usage Info (from /proc/self/status):\n");
-    MemoryUsage();
 
     return 0;
 }
