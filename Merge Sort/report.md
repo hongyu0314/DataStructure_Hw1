@@ -138,15 +138,20 @@ void merge_sort(int* array_start, int* array_end) {
 
 #### 空間複雜度分析
 
-| 測試案例 | 參數個數 $n$ | interactive version 所耗最大空間 | recusion version 所耗空間 |
+| 測試案例 | 參數個數 $n$ | interactive version 所用最大空間 | recusion version 所用最大空間 |
 |----------|--------------|----------|----------|
-| 測試一   | $n = 500$      | 2680 seconds | 0.000017133 seconds |
-| 測試二   | $n = 1000$      | 0.000050844 seconds | 0.000046048 seconds | 
-| 測試三   | $n = 2000$      | 0.000124384 seconds | 0.000170176 seconds |
-| 測試四   | $n = 3000$      | 0.000236307 seconds | 0.000384653 seconds |
-| 測試五   | $n = 4000$      | 0.000382066 seconds | 0.000692233 seconds |
-| 測試六   | $n = 5000$      | 0.000592382 seconds | 0.001098362 seconds |
+| 測試一   | $n = 500$      | 2680 KB | 2680 KB |
+| 測試二   | $n = 1000$      | 2680 KB | 2680 KB |
+| 測試三   | $n = 2000$      | 2680 KB | 2680 KB |
+| 測試四   | $n = 3000$      | 2680 KB | 2680 KB |
+| 測試五   | $n = 4000$      | 2680 KB | 2680 KB |
+| 測試六   | $n = 5000$      | 2680 KB | 2680 KB |
 
+因使用 malloc 多用的空間只占極小部分所以所有輸出皆為 2680 KB 為正常現象
+
+interactive version ：因 malloc 只在一開始叫了一組temp，故遞迴消耗記憶體恆為 O(n);
+
+recusion version ：因在每個遞迴呼叫出來後才使用 malloc 故遞迴消耗記憶體恆為 O(n);
 
 ## 申論及開發報告
 
