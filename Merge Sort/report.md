@@ -102,7 +102,9 @@ void merge_sort(int* array_start, int* array_end) {
 ```
 ## 效能分析
 
-### 平均複雜度測試
+### 複雜度分析
+
+#### 測試時間複雜度
 
 | 測試案例 | 參數個數 $n$ | interaction version worst case 所耗時間 | recursion version worst case 所耗時間 |
 |----------|--------------|----------|----------|
@@ -113,11 +115,30 @@ void merge_sort(int* array_start, int* array_end) {
 | 測試五   | $n = 4000$      | 0.000382066 seconds | 0.000609600 seconds |
 | 測試六   | $n = 5000$      | 0.000592382 seconds | 0.000926802 seconds |
 
-#### 時間複雜度分析
 以下為圖表:
 ![image](https://raw.githubusercontent.com/hongyu0314/DataStructure_Hw1/refs/heads/main/Merge%20Sort/picture/%E5%9C%96%E7%89%871.png)
 
-interaction method 的表現明顯更快
+因 interaction method 的表現明顯更快
+所以以下平均複雜度使用 interaction method 
+
+| 測試案例 | 參數個數 $n$ | worst case 所耗時間 | average case 所耗時間 |
+|----------|--------------|----------|----------|
+| 測試一   | $n = 500$      | 0.000018234 seconds | 0.000017133 seconds |
+| 測試二   | $n = 1000$      | 0.000050844 seconds | 0.000046048 seconds | 
+| 測試三   | $n = 2000$      | 0.000124384 seconds | 0.000170176 seconds |
+| 測試四   | $n = 3000$      | 0.000236307 seconds | 0.000384653 seconds |
+| 測試五   | $n = 4000$      | 0.000382066 seconds | 0.000692233 seconds |
+| 測試六   | $n = 5000$      | 0.000592382 seconds | 0.001098362 seconds |
+
+以下為圖表:
+![image](https://raw.githubusercontent.com/hongyu0314/DataStructure_Hw1/refs/heads/main/Merge%20Sort/picture/%E5%9C%96%E7%89%871.png)
+
+因為算法部完美所以 worst case 比 average case 耗時要短
+
+
+#### 時間複雜度分析
+
+
 由圖表折線形狀大至推估其成長性為 O(nlogn)
 
 #### 空間複雜度分析
