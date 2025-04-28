@@ -16,18 +16,41 @@
 
 ## 程式實作
 
-以下為Worst-case的程式碼：
+由於 heapsort 沒有兩個 method 所以只有一個 heapsort 主函式
 
 ```cpp
+void localHeapSort(int* arr, int n, int i) {
+    int largest = i;         // 最大值的索引
+    int left = 2 * i + 1;    // 左子節點
+    int right = 2 * i + 2;   // 右子節點
 
+    if (left < n && arr[left] > arr[largest]) // 做整理(交換)
+        largest = left;
+    
+    if (right < n && arr[right] > arr[largest])
+        largest = right;
+    
+    if (largest != i) {
+        swap(arr[i], arr[largest]);
+        localHeapSort(arr, n, largest); // 以遞迴做區域的整理 aka 節點和其後的枝條
+    }
+}
+
+void heapsort(int* arr, int n) {
+    // 建立最大堆
+    for (int i = n / 2 - 1; i >= 0; i--)
+        localHeapSort(arr, n, i);
+    
+    // 一個一個取出元素
+    for (int i = n - 1; i > 0; i--) {
+        swap(arr[0], arr[i]);  // 把最大值換到最後
+        localHeapSort (arr, i, 0);    // 依序向下做 heapsort 遞迴整理每個枝條
+    }
+}
 
 
 ```
-以下為Average-case的程式碼：
 
-```cpp
-
-```
 ## 效能分析
 ### 複雜度分析
 #### 時間複雜度分析
@@ -40,6 +63,11 @@
 | 測試四   | $n = 3000$      | 0.000969935 seconds | 0.000947321 seconds |
 | 測試五   | $n = 4000$      | 0.001660909 seconds | 0.001646394 seconds |
 | 測試六   | $n = 5000$      | 0.002569854 seconds | 0.002557417 seconds |
+
+以下折線圖:
+![image](https://raw.githubusercontent.com/hongyu0314/DataStructure_Hw1/refs/heads/main/Heap%20Sort/picture/%E5%9C%96%E7%89%875.png)
+
+根據折線圖成長把 heapsort 的時間複雜度訂為 n(nlogn)
 
 #### 空間複雜度分析
 
