@@ -115,7 +115,7 @@ void merge_sort(int* array_start, int* array_end) {
 
 ### 複雜度分析
 以下為圖表連結:
-[折線圖](https://imgur.com/a/zeV4Rw7)
+![image](https://imgur.com/a/zeV4Rw7)
 
 
 ## 申論及開發報告
