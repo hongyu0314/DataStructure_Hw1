@@ -113,6 +113,8 @@ void merge_sort(int* array_start, int* array_end) {
 | 測試五   | $n = 4000$      | 0.462440 seconds | 0.856168 seconds |
 | 測試六   | $n = 5000$      | 0.748762 seconds | 1.251639 seconds |
 
+![image] https://imgur.com/a/zeV4Rw7
+
 ### 複雜度分析
 
 ## 申論及開發報告
