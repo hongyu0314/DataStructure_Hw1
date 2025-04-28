@@ -203,10 +203,11 @@ void insertionSort(T* arr, int size) {
     }
 }
 
-// quick
-void quickSort(vector<int> arr, int left, int right) {
+// QuickSort (modified to work with pointers instead of vector)
+template <typename T>
+void quickSort(T* arr, int left, int right) {
     if (left < right) {
-        int pivot = arr[right];
+        T pivot = arr[right];
         int i = left - 1;
         for (int j = left; j < right; ++j) {
             if (arr[j] <= pivot) {
@@ -271,10 +272,10 @@ void localHeapSort(int* arr, int n, int i) {
 
     if (left < n && arr[left] > arr[largest])
         largest = left;
-    
+
     if (right < n && arr[right] > arr[largest])
         largest = right;
-    
+
     if (largest != i) {
         swap(arr[i], arr[largest]);
         localHeapSort(arr, n, largest);
@@ -284,10 +285,10 @@ void localHeapSort(int* arr, int n, int i) {
 void heapsort(int* arr, int n) {
     for (int i = n / 2 - 1; i >= 0; i--)
         localHeapSort(arr, n, i);
-    
+
     for (int i = n - 1; i > 0; i--) {
         swap(arr[0], arr[i]);
-        localHeapSort (arr, i, 0);
+        localHeapSort(arr, i, 0);
     }
 }
 
@@ -295,8 +296,8 @@ void printMemoryUsage() {
     PROCESS_MEMORY_COUNTERS pmc;
     if (GetProcessMemoryInfo(GetCurrentProcess(), &pmc, sizeof(pmc))) {
         cout << "Working Set Size: " << pmc.WorkingSetSize / 1024 / 1024 << " MB\n"
-             << "Peak Working Set Size: " << pmc.PeakWorkingSetSize / 1024 / 1024 << " MB\n"
-             << "Pagefile Usage: " << pmc.PagefileUsage / 1024 / 1024 << " MB\n" << endl;
+            << "Peak Working Set Size: " << pmc.PeakWorkingSetSize / 1024 / 1024 << " MB\n"
+            << "Pagefile Usage: " << pmc.PagefileUsage / 1024 / 1024 << " MB\n" << endl;
     }
 }
 
@@ -304,9 +305,11 @@ template <typename T>
 void compositeSort(T* arr, int size) {
     if (size < 10) {
         insertionSort(arr, size);
-    } else if (size < 1000) {
+    }
+    else if (size < 1000) {
         heapsort(arr, size);
-    } else {
+    }
+    else {
         quickSort(arr, 0, size - 1);
     }
 }
@@ -314,7 +317,7 @@ void compositeSort(T* arr, int size) {
 int main() {
     srand(time(0));
 
-    vector<int> sizes = {100, 500, 1000, 2000, 5000, 10000};
+    vector<int> sizes = { 500, 1000, 2000, 3000, 4000, 5000 };
 
     for (int n : sizes) {
         vector<int> arr(n);
