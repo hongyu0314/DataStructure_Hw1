@@ -114,9 +114,10 @@ void merge_sort(int* array_start, int* array_end) {
 | 測試六   | $n = 5000$      | 0.748762 seconds | 1.251639 seconds |
 
 ### 複雜度分析
-以下為圖表連結:
+以下為圖表:
 ![image](https://raw.githubusercontent.com/hongyu0314/DataStructure_Hw1/refs/heads/main/Merge%20Sort/picture/%E5%9C%96%E7%89%871.png)
 
+由圖表折線形狀大至推估其變化沒有  
 
 ## 申論及開發報告
 
