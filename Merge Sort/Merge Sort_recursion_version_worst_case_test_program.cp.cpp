@@ -5,6 +5,7 @@
 
 #define MAX_INPUT_SIZE 5000
 
+
 void merge_sort(int* array_start, int* array_end) {
     int size = array_end - array_start;
     if (size <= 1) {
@@ -55,26 +56,45 @@ void MemoryUsage() {
     }
 
     fclose(file);
-}//MemoryUsage
+}
+
+void fill_worst(int* arr, int size) {
+    for (int i = 0; i < size; ++i) {
+        arr[i] = size - i;
+    }
+}
+
 
 int main() {
-    int pre_sort_array[MAX_INPUT_SIZE+1] = {0}, i = 0;
+    int pre_sort_array[MAX_INPUT_SIZE+1] = {0}, i = 0;//+1 is for the end of input flag aka -1
+    int test_element_count, test_repeat = 10000;
+    double avg_duration=0;
 
-    while (1) {
-        scanf("%d", &pre_sort_array[i]);
-        if (pre_sort_array[i] == -1) break;
-        i++;
+    while (1) 
+    {
+        scanf("%d", &test_element_count);
+        if (test_element_count == -1) break;
+    
+        i = test_repeat;
+        
+        fill_worst(pre_sort_array,test_element_count);
+    
+        while(i--){
+        
+            clock_t start = clock();
+            merge_sort(pre_sort_array,pre_sort_array+test_element_count);
+            clock_t end = clock();
+        
+            avg_duration += (double)(end - start) / CLOCKS_PER_SEC;
+        }
+        
+        printf("MergeSort interactive version total duration: %.9lf seconds\n", avg_duration);
+        printf("MergeSort interactive version average duration: %.9lf seconds\n", avg_duration/test_repeat);
+    
+        printf("Memory Usage Info (from /proc/self/status):\n");
+        MemoryUsage();
+    
     }
-
-    clock_t start = clock();
-    merge_sort(pre_sort_array, pre_sort_array + i);
-    clock_t end = clock();
-
-    double duration = (double)(end - start) / CLOCKS_PER_SEC;
-    printf("MergeSort recursion version duration: %.9lf seconds\n", duration);
-
-    printf("Memory Usage Info (from /proc/self/status):\n");
-    MemoryUsage();
 
     return 0;
 }
