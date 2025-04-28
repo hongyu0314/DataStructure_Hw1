@@ -2,7 +2,7 @@
 
 ## 解題說明
 
-本題要求找出在各個 n 時，哪個排序法最快 (以表格等形式呈現)，並寫一個結合多種排序法的函式 (Composite Sort)，可以對應不同輸入資料，在最短的時間內完成排序。
+本題要求找出在各個 n 時，哪個排序法最快 Time_Comparing (以表格等形式呈現)，並寫一個結合多種排序法的函式 (Composite Sort)，可以對應不同輸入資料，在最短的時間內完成排序。
 
 ### 解題策略
 
@@ -16,7 +16,7 @@
 
 ## 程式實作
 
-以下為Time_comparing的程式碼：
+以下為Time_Comparing的程式碼：
 ```cpp
 #include <iostream>
 #include <vector>
@@ -357,7 +357,7 @@ int main() {
 
 ## 測試與驗證
 
-### 測試案例
+### Time_Comparing測試案例
 
 | 測試案例 | 參數個數 $n$ | Insertion Sort所耗時間 | Quick Sort所耗時間 | Merge Sort所耗時間 | Heap Sort所耗時間 |
 |----------|--------------|----------|----------|----------|----------|
