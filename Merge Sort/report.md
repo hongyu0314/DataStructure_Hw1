@@ -14,46 +14,106 @@
 
 5. 因 mergesort 演算法特性所有步驟皆會跑過一遍所以 worst case 將採用與 average case 相同的隨機生成。
 
-## 程式實作
+## 程式碼片段分析
 
-以下為Worst-case的程式碼：
-
+以下為 interactive version 的程式碼：
 ```cpp
+void merge(int* src, int* dest, int left, int mid, int right) {
+    int i = left, j = mid, k = left;
+    while (i < mid && j < right) { //比較兩個片段的最小值 填入目標位置 aka 下一層片段 
+        dest[k++] = (src[i] <= src[j]) ? src[i++] : src[j++];
+    }
+    while (i < mid) dest[k++] = src[i++];
+    while (j < right) dest[k++] = src[j++];
+}
 
+void merge_sort_v(int* array, int size) { //merge sort 的主函式
+    int* temp = (int*)malloc(size * sizeof(int));
+    if (!temp) { //偵測取記憶體成功
+        perror("malloc failed");
+        return;
+    }
+
+    int* src = array; 
+    int* dest = temp; // 把本來的陣列指派給第一個 run 並把 malloc 的陣列指派給 第二個 run
+
+    for (int width = 1; width < size; width *= 2) { // 從一個單位開始每次結合兩個片段
+        for (int i = 0; i < size; i += 2 * width) {
+            int left = i;
+            int mid = (i + width < size) ? i + width : size;
+            int right = (i + 2 * width < size) ? i + 2 * width : size;
+            merge(src, dest, left, mid, right);
+        }
+
+        // 交換兩個 run 的指標
+        int* tmp = src;
+        src = dest;
+        dest = tmp;
+
+    }
+
+    // 把正確的結果複製到目標陣列
+    if (src != array) {
+        for (int i = 0; i < size; ++i)
+            array[i] = src[i];
+    }
+
+    free(temp);
+}
 ```
-以下為Average-case的程式碼：
+
+以下為 recursion version 的程式碼：
 
 ```cpp
+void merge_sort(int* array_start, int* array_end) {
+    int size = array_end - array_start;
+    if (size <= 1) {
+        // 遞迴的終點 aka 片段已經拆分到最小
+        return;
+    }
+    int* midpoint = array_start + size / 2; // 計算片段中點準備拆分
 
+    merge_sort(array_start, midpoint); // 根據中點與片段左最、最右點往下做遞迴
+    merge_sort(midpoint, array_end);
+
+    int* temp = (int*)malloc(size * sizeof(int)); // 取記憶體
+    int *left = array_start, *right = midpoint, *dest = temp;
+
+    while (left < midpoint && right < array_end) {  // 結合更高層遞迴回來的兩個較小片段
+        if (*left <= *right) {
+            *dest++ = *left++;
+        } else {
+            *dest++ = *right++;
+        }
+    }
+    while (left < midpoint) {
+        *dest++ = *left++;
+    }
+    while (right < array_end) {
+        *dest++ = *right++;
+    }
+
+    for (int i = 0; i < size; ++i) { // 把結果送回接收的陣列
+        array_start[i] = temp[i];
+    }
+
+    free(temp);
+}
 ```
 ## 效能分析
 
-1. 
-    Worst-case:
-
-     時間複雜度： $O(n²)$。
- 
-     空間複雜度： $O(1)$。
-2. 
-   Average-case：
-
-     時間複雜度： $O(n²)$。
- 
-     空間複雜度： $O(1)$。
-
-
-## 測試與驗證
-
 ### 測試案例
 
-| 測試案例 | 參數個數 $n$ | Average-case所耗時間 | Worst-case所耗時間 |
+| 測試案例 | 參數個數 $n$ | interaction version所耗時間 | recursion version 所耗時間 |
 |----------|--------------|----------|----------|
-| 測試一   | $n = 500$      | 0.000161 seconds | 0.000418 seconds |
-| 測試二   | $n = 1000$      | 0.000639 seconds | 0.001944 seconds | 
-| 測試三   | $n = 2000$      | 0.002534 seconds | 0.007495 seconds |
-| 測試四   | $n = 3000$      | 0.006434 seconds | 0.016573 seconds |
-| 測試五   | $n = 4000$      | 0.011112 seconds | 0.029255 seconds |
-| 測試六   | $n = 5000$      | 0.019719 seconds | 0.037256 seconds |
+| 測試一   | $n = 500$      | 0.036974 seconds | 0.048030 seconds |
+| 測試二   | $n = 1000$      | 0.049798 seconds | 0.136707 seconds | 
+| 測試三   | $n = 2000$      | 0.101688 seconds | 0.302911 seconds |
+| 測試四   | $n = 3000$      | 0.258972 seconds | 0.541366 seconds |
+| 測試五   | $n = 4000$      | 0.462440 seconds | 0.856168 seconds |
+| 測試六   | $n = 5000$      | 0.748762 seconds | 1.251639 seconds |
+
+### 複雜度分析
 
 ## 申論及開發報告
 
