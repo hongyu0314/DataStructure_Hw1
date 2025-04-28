@@ -104,7 +104,7 @@ void merge_sort(int* array_start, int* array_end) {
 
 ### 複雜度分析
 
-#### 測試時間複雜度
+#### 時間複雜度分析
 
 | 測試案例 | 參數個數 $n$ | interaction version worst case 所耗時間 | recursion version worst case 所耗時間 |
 |----------|--------------|----------|----------|
@@ -131,15 +131,10 @@ void merge_sort(int* array_start, int* array_end) {
 | 測試六   | $n = 5000$      | 0.000592382 seconds | 0.001098362 seconds |
 
 以下為圖表:
-![image](https://raw.githubusercontent.com/hongyu0314/DataStructure_Hw1/refs/heads/main/Merge%20Sort/picture/%E5%9C%96%E7%89%871.png)
+![image](https://raw.githubusercontent.com/hongyu0314/DataStructure_Hw1/refs/heads/main/Merge%20Sort/picture/%E5%9C%96%E7%89%873.png)
 
-因為算法部完美所以 worst case 比 average case 耗時要短
-
-
-#### 時間複雜度分析
-
-
-由圖表折線形狀大至推估其成長性為 O(nlogn)
+因為算法不完美所以 worst case 比 average case 耗時要短
+基於耗時成長幅度決定其複雜度為: O(nlogn)
 
 #### 空間複雜度分析
 
