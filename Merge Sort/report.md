@@ -104,18 +104,18 @@ void merge_sort(int* array_start, int* array_end) {
 
 ### 平均複雜度測試
 
-| 測試案例 | 參數個數 $n$ | interaction version所耗時間 | recursion version 所耗時間 |
+| 測試案例 | 參數個數 $n$ | interaction version worst case 所耗時間 | recursion version worst case 所耗時間 |
 |----------|--------------|----------|----------|
-| 測試一   | $n = 500$      | 0.036974 seconds | 0.048030 seconds |
-| 測試二   | $n = 1000$      | 0.049798 seconds | 0.136707 seconds | 
-| 測試三   | $n = 2000$      | 0.101688 seconds | 0.302911 seconds |
-| 測試四   | $n = 3000$      | 0.258972 seconds | 0.541366 seconds |
-| 測試五   | $n = 4000$      | 0.462440 seconds | 0.856168 seconds |
-| 測試六   | $n = 5000$      | 0.748762 seconds | 1.251639 seconds |
+| 測試一   | $n = 500$      | 0.000018234 seconds | 0.000025638 seconds |
+| 測試二   | $n = 1000$      | 0.000050844 seconds | 0.000079725 seconds | 
+| 測試三   | $n = 2000$      | 0.000124384 seconds | 0.000192790 seconds |
+| 測試四   | $n = 3000$      | 0.000236307 seconds | 0.000364234 seconds |
+| 測試五   | $n = 4000$      | 0.000382066 seconds | 0.000609600 seconds |
+| 測試六   | $n = 5000$      | 0.000592382 seconds | 0.000926802 seconds |
 
 #### 時間複雜度分析
 以下為圖表:
-![image]()
+![image](https://raw.githubusercontent.com/hongyu0314/DataStructure_Hw1/refs/heads/main/Merge%20Sort/picture/%E5%9C%96%E7%89%871.png)
 
 由圖表折線形狀大至推估兩者成長性皆為 O(nlogn)
 
