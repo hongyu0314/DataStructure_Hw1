@@ -10,7 +10,7 @@
 
 2. Average-case 的整數變數產生使用隨機亂數(範圍設在0~9999)。
 
-3. 測量排序時間使用 clock( ) 。
+3. 測量排序時間使用 std::chrono。
 
 4. 依記憶體的使用量推敲出空間複雜度 
 
@@ -20,12 +20,14 @@
 
 ```cpp
 #include <iostream>
-#include <ctime>
 #include <cstdlib>
+#include <ctime>
+#include <chrono>
 #include <windows.h>  
 #include <psapi.h>    
 
 using namespace std;
+using namespace std::chrono;
 
 template <class T>
 void printArray(T* arr, int size) {
@@ -75,12 +77,12 @@ int main() {
 
         cout << "n =  " << n << endl;
 
-        clock_t start = clock();
+        auto start = high_resolution_clock::now();
         insertionSort(arr, n);
-        clock_t end = clock();
+        auto end = high_resolution_clock::now();
 
-        double duration = double(end - start) / CLOCKS_PER_SEC;
-        cout << "Worst-case time " << ": " << duration << " seconds" << endl;
+        auto duration = duration_cast<microseconds>(end - start); 
+        cout << "Worst-case time " << ": " << duration.count() << " microseconds" << endl;
 
         MemoryUsage();
 
@@ -89,17 +91,20 @@ int main() {
 
     return 0;
 }
+
 ```
 以下為Average-case的程式碼：
 
 ```cpp
 #include <iostream>
-#include <ctime>
 #include <cstdlib>
-#include <windows.h>  
-#include <psapi.h>    
+#include <ctime>
+#include <chrono>
+//#include <windows.h>  
+//#include <psapi.h>    
 
 using namespace std;
+using namespace std::chrono;
 
 template <class T>
 void printArray(T* arr, int size) {
@@ -149,12 +154,12 @@ int main() {
 
         cout << "n =  " << n << endl;
 
-        clock_t start = clock();
+        auto start = high_resolution_clock::now();
         insertionSort(arr, n);
-        clock_t end = clock();
+        auto end = high_resolution_clock::now(); 
 
-        double duration = double(end - start) / CLOCKS_PER_SEC;
-        cout << "Average-case time " << ": " << duration << " seconds." << endl;
+        auto duration = duration_cast<microseconds>(end - start); 
+        cout << "Average-case time " << ": " << duration.count() << " microseconds." << endl;
 
         MemoryUsage();
 
@@ -188,12 +193,12 @@ int main() {
 
 | 測試案例 | 參數個數 $n$ | Average-case所耗時間 | Worst-case所耗時間 |
 |----------|--------------|----------|----------|
-| 測試一   | $n = 500$      | 0.000161 seconds | 0.000418 seconds |
-| 測試二   | $n = 1000$      | 0.000639 seconds | 0.001944 seconds | 
-| 測試三   | $n = 2000$      | 0.002534 seconds | 0.007495 seconds |
-| 測試四   | $n = 3000$      | 0.006434 seconds | 0.016573 seconds |
-| 測試五   | $n = 4000$      | 0.011112 seconds | 0.029255 seconds |
-| 測試六   | $n = 5000$      | 0.019719 seconds | 0.037256 seconds |
+| 測試一   | $n = 500$      | 262 microseconds | 497 microseconds |
+| 測試二   | $n = 1000$      | 696 microseconds | 1962 microseconds | 
+| 測試三   | $n = 2000$      | 2721 microseconds | 8785 microseconds |
+| 測試四   | $n = 3000$      | 7718 microseconds | 43188 microseconds |
+| 測試五   | $n = 4000$      | 13504 microseconds | 33950 microseconds |
+| 測試六   | $n = 5000$      | 22764 microseconds | 48361 microseconds |
 
 ![output (2)](https://github.com/user-attachments/assets/337db611-2a87-4ece-bcaa-351d812ea73a)
 ## 申論及開發報告
