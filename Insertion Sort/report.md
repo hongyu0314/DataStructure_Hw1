@@ -195,9 +195,9 @@ int main() {
 |----------|--------------|----------|----------|
 | 測試一   | $n = 500$      | 262 microseconds | 497 microseconds |
 | 測試二   | $n = 1000$      | 696 microseconds | 1962 microseconds | 
-| 測試三   | $n = 2000$      | 2721 microseconds | 8785 microseconds |
-| 測試四   | $n = 3000$      | 7718 microseconds | 43188 microseconds |
-| 測試五   | $n = 4000$      | 13504 microseconds | 33950 microseconds |
+| 測試三   | $n = 2000$      | 2721 microseconds | 9522 microseconds |
+| 測試四   | $n = 3000$      | 7718 microseconds | 14336 microseconds |
+| 測試五   | $n = 4000$      | 13504 microseconds | 29712 microseconds |
 | 測試六   | $n = 5000$      | 22764 microseconds | 48361 microseconds |
 
 ![output (2)](https://github.com/user-attachments/assets/337db611-2a87-4ece-bcaa-351d812ea73a)
