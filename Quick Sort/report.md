@@ -200,12 +200,12 @@ int main() {
 
 | 測試案例 | 參數個數 $n$ | Average-case所耗時間 | Worst-case所耗時間 |
 |----------|--------------|----------|----------|
-| 測試一   | $n = 500$      | 74 microseconds | 3703 microseconds |
-| 測試二   | $n = 1000$      | 201 microseconds | 13140 microseconds | 
-| 測試三   | $n = 2000$      | 392 microseconds | 35470 microseconds |
-| 測試四   | $n = 3000$      | 547 microseconds | 84799 microseconds |
-| 測試五   | $n = 4000$      | 787 microseconds | 132223 microseconds |
-| 測試六   | $n = 5000$      | 988 microseconds | 192610 microseconds |
+| 測試一   | $n = 500$      | 48 microseconds | 74 microseconds |
+| 測試二   | $n = 1000$      | 138 microseconds | 201 microseconds | 
+| 測試三   | $n = 2000$      | 294 microseconds | 392 microseconds |
+| 測試四   | $n = 3000$      | 520 microseconds | 547 microseconds |
+| 測試五   | $n = 4000$      | 679 microseconds | 787 microseconds |
+| 測試六   | $n = 5000$      | 713 microseconds | 988 microseconds |
 
 ![output (3)](https://github.com/user-attachments/assets/ba1e4ca4-af2d-4a04-afd3-d99bd1c6320f)
 
