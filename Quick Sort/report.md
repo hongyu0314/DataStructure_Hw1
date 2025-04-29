@@ -98,8 +98,16 @@ int main() {
 using namespace std;
 using namespace std::chrono;
 
-void quickSort(vector<int> arr, int left, int right) {
+void quickSort(vector<int> &arr, int left, int right) {
     if (left < right) {
+        int mid = left + (right - left) / 2;
+        int pivotIndex = left;
+        if (arr[mid] < arr[left])
+            pivotIndex = mid;
+        if (arr[right] < arr[pivotIndex])
+            pivotIndex = right;
+        swap(arr[pivotIndex], arr[right]);  
+
         int pivot = arr[right];
         int i = left - 1;
         for (int j = left; j < right; ++j) {
@@ -109,10 +117,15 @@ void quickSort(vector<int> arr, int left, int right) {
             }
         }
         swap(arr[i + 1], arr[right]);
-        int pivotIndex = i + 1;
+        int pivotIndexNew = i + 1;
 
-        quickSort(arr, left, pivotIndex - 1);
-        quickSort(arr, pivotIndex + 1, right);
+        if (pivotIndexNew - 1 < right - pivotIndexNew) {
+            quickSort(arr, left, pivotIndexNew - 1);
+            quickSort(arr, pivotIndexNew + 1, right);
+        } else {
+            quickSort(arr, pivotIndexNew + 1, right);
+            quickSort(arr, left, pivotIndexNew - 1);
+        }
     }
 }
 
@@ -124,7 +137,7 @@ vector<int> Random(int n) {
     return arr;
 }
 
-void printMemoryUsage() {
+void MemoryUsage() {
     PROCESS_MEMORY_COUNTERS pmc;
     if (GetProcessMemoryInfo(GetCurrentProcess(), &pmc, sizeof(pmc))) {
         cout << "Working Set Size: " << pmc.WorkingSetSize / 1024 / 1024 << " MB\n"
@@ -147,7 +160,7 @@ int main() {
 
         auto duration = duration_cast<microseconds>(end - start);
         cout << "n = " << n << endl << "Average-case time: " << duration.count() << " microseconds" << endl;
-        printMemoryUsage();
+        MemoryUsage();
     }
     return 0;
 }
