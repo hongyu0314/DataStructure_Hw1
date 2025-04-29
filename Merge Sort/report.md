@@ -2,7 +2,7 @@
 
 ## 題目說明
 
-題目要求 mergesort 的 worst case 與 average case 時間、空間的複雜度計算，並且如果有的話使用更快的 methhod。
+題目要求 mergesort 的 worst case 與 average case 時間、空間的複雜度計算，並且如果有的話使用更快的 method。
 
 ### 解題細節
 
