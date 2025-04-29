@@ -8,7 +8,7 @@
 
 1. 使用 median-of-three method
 
-2.Worst-case 的整數變數產生使用逆序排列的數字。
+2. Worst-case 的整數變數產生使用逆序排列的數字。
 
 3. Average-case 的整數變數產生使用隨機亂數(範圍在0~9999)。
 
