@@ -200,7 +200,8 @@ int main() {
 | 測試五   | $n = 4000$      | 13504 microseconds | 29712 microseconds |
 | 測試六   | $n = 5000$      | 22764 microseconds | 48361 microseconds |
 
-![output (2)](https://github.com/user-attachments/assets/337db611-2a87-4ece-bcaa-351d812ea73a)
+![output (1)](https://github.com/user-attachments/assets/546c861f-5779-40b7-8884-915816f42cd1)
+
 ## 申論及開發報告
 
 ### 在本程式中，使用插入排序法的主要原因如下：
