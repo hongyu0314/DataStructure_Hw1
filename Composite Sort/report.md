@@ -337,7 +337,7 @@ void compositeSort(T& arr, int size) {
 int main() {
     srand(time(0));
 
-    vector<int> sizes = { 10, 300, 500, 1000, 2000, 5000 };
+    vector<int> sizes = {50, 500, 1000, 3000, 5000, 10000};
 
     for (int n : sizes) {
         vector<int> arr(n);
