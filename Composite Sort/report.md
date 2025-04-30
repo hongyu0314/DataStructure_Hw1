@@ -406,9 +406,9 @@ int main() {
    
 3. Merge sort:
 
-   時間複雜度： $O()$
+   時間複雜度： $O(nlogn)$
 
-   空間複雜度： $O()$
+   空間複雜度： $O(n)$
 
 4. Heap Sort:
 
