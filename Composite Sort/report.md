@@ -313,6 +313,51 @@ void quickSort(vector<int>& arr, int left, int right) {
     }
 }
 
+void mergeSort(vector<int>& arr, int left, int right) {
+    if (left < right) {
+        int mid = left + (right - left) / 2;
+        
+        mergeSort(arr, left, mid);
+        mergeSort(arr, mid + 1, right);
+        
+        vector<int> leftArr(arr.begin() + left, arr.begin() + mid + 1);
+        vector<int> rightArr(arr.begin() + mid + 1, arr.begin() + right + 1);
+
+        int i = 0, j = 0, k = left;
+        while (i < leftArr.size() && j < rightArr.size()) {
+            if (leftArr[i] <= rightArr[j]) {
+                arr[k++] = leftArr[i++];
+            }
+            else {
+                arr[k++] = rightArr[j++];
+            }
+        }
+
+        while (i < leftArr.size()) {
+            arr[k++] = leftArr[i++];
+        }
+        while (j < rightArr.size()) {
+            arr[k++] = rightArr[j++];
+        }
+    }
+}
+
+template <typename T>
+void compositeSort(T& arr, int size) {
+    if (size <= 100) {
+        insertionSort(arr.data(), size);
+        cout<<"Using Insertion sort"<<endl;
+    }
+    else if (size <= 1000) {
+        heapsort(arr.data(), size);
+        cout<<"\nUsing Heap sort"<<endl;
+    }
+    else {
+        quickSort(arr, 0, size - 1);
+        cout<<"\nUsing Quick sort"<<endl;
+    }
+}
+
 void MemoryUsage() {
     PROCESS_MEMORY_COUNTERS pmc;
     if (GetProcessMemoryInfo(GetCurrentProcess(), &pmc, sizeof(pmc))) {
@@ -322,23 +367,10 @@ void MemoryUsage() {
     }
 }
 
-template <typename T>
-void compositeSort(T& arr, int size) {
-    if (size <= 10) {
-        insertionSort(arr.data(), size);
-    }
-    else if (size < 1000 && size > 10) {
-        heapsort(arr.data(), size);
-    }
-    else {
-        quickSort(arr, 0, size - 1);
-    }
-}
-
 int main() {
     srand(time(0));
 
-    vector<int> sizes = { 50, 500, 1000, 3000, 5000, 10000 };
+    vector<int> sizes = { 100, 500, 1000, 3000, 5000, 10000 };
 
     for (int n : sizes) {
         vector<int> arr(n);
