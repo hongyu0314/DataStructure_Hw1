@@ -305,7 +305,8 @@ void quickSort(vector<int>& arr, int left, int right) {
         if (pivotIndexNew - 1 < right - pivotIndexNew) {
             quickSort(arr, left, pivotIndexNew - 1);
             quickSort(arr, pivotIndexNew + 1, right);
-        } else {
+        }
+        else {
             quickSort(arr, pivotIndexNew + 1, right);
             quickSort(arr, left, pivotIndexNew - 1);
         }
@@ -315,9 +316,9 @@ void quickSort(vector<int>& arr, int left, int right) {
 void MemoryUsage() {
     PROCESS_MEMORY_COUNTERS pmc;
     if (GetProcessMemoryInfo(GetCurrentProcess(), &pmc, sizeof(pmc))) {
-        cout << "Working Set Size: " << pmc.WorkingSetSize / 1024 / 1024 << " MB\n"
-             << "Peak Working Set Size: " << pmc.PeakWorkingSetSize / 1024 / 1024 << " MB\n"
-             << "Pagefile Usage: " << pmc.PagefileUsage / 1024 / 1024 << " MB\n" << endl;
+        cout << "Working Set Size: " << pmc.WorkingSetSize / 1024 << " KB\n"
+            << "Peak Working Set Size: " << pmc.PeakWorkingSetSize / 1024  << " KB\n"
+            << "Pagefile Usage: " << pmc.PagefileUsage / 1024<< " KB\n" << endl;
     }
 }
 
@@ -337,7 +338,7 @@ void compositeSort(T& arr, int size) {
 int main() {
     srand(time(0));
 
-    vector<int> sizes = {50, 500, 1000, 3000, 5000, 10000};
+    vector<int> sizes = { 50, 500, 1000, 3000, 5000, 10000 };
 
     for (int n : sizes) {
         vector<int> arr(n);
