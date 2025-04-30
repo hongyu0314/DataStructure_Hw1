@@ -365,13 +365,19 @@ int main() {
    時間複雜度： $O(n^2)$
 
    空間複雜度： $O(1)$
-   
-3. Quick Sort:
+
+2. Quick Sort:
 
    時間複雜度： $O(nlogn)$
 
    空間複雜度： $O(logn)$
    
+3. Merge sort:
+
+   時間複雜度： $O()$
+
+   空間複雜度： $O()$
+
 4. Heap Sort:
 
    時間複雜度： $O(nlogn)$
